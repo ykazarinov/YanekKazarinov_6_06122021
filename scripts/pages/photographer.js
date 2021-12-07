@@ -16,16 +16,25 @@ async function getPortfolio(){
     return portfolio
 }
 
-async function displayPortfolio(media) {
-    // const photographersSection = document.querySelector(".photographer_section"); 
+async function displayPortfolio(media) { 
+    // const portfolioContainer = document.querySelector(".portfolio-container"); 
     let portfolioContainer = document.createElement('section')
     portfolioContainer.classList.add('portfolio-container')
     document.getElementById('main').appendChild(portfolioContainer)
 
     media.forEach((media) => {
-        const photographerModel = new photographerFactory(media);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
+         const mediaModel = new imageConstructor(media);
+
+         
+        
+        const mediaCardDOM = mediaModel.getImageCardDOM()
+        
+        .then(response => {
+            // const mediaCardDOMNod = document.createTextNode(response)
+            portfolioContainer.appendChild(response)
+        })
+                 
+        // photographersSection.appendChild(userCardDOM);
 
                    
     });
@@ -40,6 +49,9 @@ async function init() {
     currentPhotographerElem.innerHTML = photographInfo.outerHTML
 
     // Preparing and filling portfolio of current photographer
+
+    const { media } = await getPhotographers();
+    displayPortfolio(media);
   
 }
 
