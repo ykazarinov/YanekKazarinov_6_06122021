@@ -1,15 +1,15 @@
 class photographerFactory{
     constructor(data){
         this.name = data.name,
-        this._id = data.id,
+        this.id = data.id,
         this.city = data.city,
         this.country = data.country,
         this.tagline = data.tagline,
-        this.price = data.price,
+        this._price = data.price,
         this.portrait = data.portrait
     }
 
-     get id(){ return this._id}
+     get price(){ return this._price}
 
     getUserCardDOM(){
         const article = document.createElement( 'article' )
@@ -24,18 +24,19 @@ class photographerFactory{
         </div>
     `
     article.innerHTML = content
-    return (article);
+    return (this.price, article);
     }
 
     getCurrentUserCardDOM(){
         const article = document.createElement( 'article' )
+        article.classList.add('photograph-header__info')
         let content = `
         <section>
-            <h2>${this.name}</h2>
+            <h1>${this.name}</h1>
             <div class="infoPlus">
                 <div class="place">${this.city}, ${this.country}</div>
                 <div class="tagline">${this.tagline}</div>
-                <div class="price">${this.price}€/jour</div>
+               
             </div>
         </section>
         <section>
@@ -47,7 +48,7 @@ class photographerFactory{
     `
 
     article.innerHTML = content
-    return (article);
+    return (this.price, article);
 
     }
 

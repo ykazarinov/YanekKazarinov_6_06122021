@@ -1,119 +1,154 @@
 @import url("photographer.css");
-
 body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
 }
 
-
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
 }
 
 h1 {
-    color: #901C1C;
-    margin-right: 100px;
+  color: #D3573C;
+  margin-right: 100px;
 }
 
 .logo {
-    height: 50px;
-    margin-left: 100px;
+  height: 50px;
+  margin-left: 100px;
 }
 
 .photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
-    margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .photographer_section article {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
 .photographer_section article h2 {
-    color: #D3573C;
-    font-size: 36px;
-
-    font-style: normal;
-    font-weight: 400;
-    line-height: 47px;
-    letter-spacing: 0em;
-    text-align: center;
-    margin-bottom: 0;
-
+  color: #D3573C;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 47px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 0;
 }
-
-.photographer_section article h2 a{
-    color: #D3573C;
-    text-decoration: none;
-
+.photographer_section article h2 a {
+  color: #D3573C;
+  text-decoration: none;
 }
-
-.photographer_section article a{
-    border-radius: 100px;
-    overflow: hidden;
-    height: 200px;
-    width: 200px;
+.photographer_section article a {
+  border-radius: 100px;
+  overflow: hidden;
+  height: 200px;
+  width: 200px;
 }
-
 .photographer_section article a img {
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
-    
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+.photographer_section article .infoPlus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.photographer_section article .infoPlus .place {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  color: #901C1C;
+}
+.photographer_section article .infoPlus .tagline {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0em;
+}
+.photographer_section article .infoPlus .price {
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #757575;
 }
 
-.photographer_section article .infoPlus{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.photograph-header__info {
+  display: flex;
+  height: 100%;
+}
+.photograph-header__info section {
+  width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.photograph-header__info section:nth-of-type(1) {
+  justify-content: center;
+  align-items: flex-start;
+}
+.photograph-header__info section h1 {
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 83px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #D3573C;
+  margin-left: 34px;
+  margin-bottom: 0;
+}
+.photograph-header__info section img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  object-fit: cover;
+  display: block;
+}
+.photograph-header__info section .infoPlus {
+  width: calc(100% - 34px);
+  margin-left: 34px;
+}
+.photograph-header__info section .infoPlus .place {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #901C1C;
+  margin-bottom: 1rem;
+}
+.photograph-header__info section .infoPlus .tagline {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #525252;
 }
 
-.photographer_section article .infoPlus .place{
-   
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    color: #901C1C;
-    
-
-}
-.photographer_section article .infoPlus .tagline{
-
-  
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 13px;
-    letter-spacing: 0em;
-
-}
-.photographer_section article .infoPlus .price{
-
-    font-size: 9px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 12px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #757575;
-
-}
-
-
-
-
-
+/*# sourceMappingURL=style.css.map */
