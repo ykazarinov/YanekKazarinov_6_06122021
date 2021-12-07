@@ -1,19 +1,13 @@
-     async function getPhotographers() {
-        // Penser à remplacer par les données récupérées dans le json
 
-        const photographers = await fetch('data/photographers.json')
-        .then(response => response.json())
-
-        // et bien retourner le tableau photographers seulement une fois
-          return photographers
-    }
 
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section"); 
         photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
+            const photographerModel = new photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
+
+                       
         });
     };
 
@@ -24,4 +18,13 @@
     };
     
     init();
+
+    // click on one photograph
+
+    document.addEventListener('click',e => {
+        if(e.target.classList.contains('img_link') || e.target.classList.contains('title_link')){
+            const currentId = e.target.parentElement.parentElement.id // get photographer id
+            localStorage.setItem( 'id', currentId ) // set id to localStorage
+        }
+      });
     
