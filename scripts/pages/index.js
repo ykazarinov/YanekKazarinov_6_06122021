@@ -3,7 +3,7 @@
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section"); 
         photographers.forEach((photographer) => {
-            const photographerModel = new photographerFactory(photographer);
+            const photographerModel = new photographerTemplate(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
 
