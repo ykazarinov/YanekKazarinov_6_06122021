@@ -28,9 +28,7 @@ async function displayPortfolio(media) {
          
         
         const mediaCardDOM = mediaModel.getImageCardDOM()
-        
         .then(response => {
-            // const mediaCardDOMNod = document.createTextNode(response)
             portfolioContainer.appendChild(response)
         })
                  
@@ -50,13 +48,10 @@ async function init() {
 
     // Preparing and filling portfolio of current photographer
 
-    const { media } = await getPhotographers();
+    const media  = await getPortfolio()
     displayPortfolio(media);
   
 }
 
 init()
-
-
-// getPortfolio()
 

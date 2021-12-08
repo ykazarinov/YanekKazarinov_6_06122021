@@ -20,6 +20,10 @@ header {
     height: 90px;
 }
 
+main{
+    padding: 0 100px;
+}
+
 h1 {
     color: $h1color;
     margin-right: 100px;
@@ -172,6 +176,22 @@ h1 {
        }
     }
     
+}
+
+.portfolio-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    figure{
+        width: 350px;
+        position: relative;
+        img{
+            width: 350px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
 }
 
 
