@@ -12,7 +12,6 @@ async function getCurrentPhotograph() {
 async function getPortfolio(){
     const { media } = await getPhotographers()
     const portfolio = await media.filter(media => media.photographerId == currentId)
-    console.log(portfolio);
     return portfolio
 }
 
@@ -24,9 +23,6 @@ async function displayPortfolio(media) {
 
     media.forEach((media) => {
          const mediaModel = new imageConstructor(media);
-
-         
-        
         const mediaCardDOM = mediaModel.getImageCardDOM()
         .then(response => {
             portfolioContainer.appendChild(response)
@@ -46,10 +42,21 @@ async function init() {
     let photographInfo = await currentPhotographer.getCurrentUserCardDOM()
     currentPhotographerElem.innerHTML = photographInfo.outerHTML
 
+    // sorting
+    const main = document.getElementById('main')
+    const sorting = new sortingTemplate()
+
+    let getSorting = sorting.getSortingDOM()
+    main.appendChild(getSorting)
+
+    
+
     // Preparing and filling portfolio of current photographer
 
     const media  = await getPortfolio()
-    displayPortfolio(media);
+    displayPortfolio(media)
+
+    
   
 }
 

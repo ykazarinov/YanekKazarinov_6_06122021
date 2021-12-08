@@ -3,6 +3,8 @@
 $h1color: #D3573C;
 $place-color: #901C1C;
 $tagline-color: #525252;
+$mark-color: #DB8876;
+
 
 
 
@@ -114,6 +116,7 @@ h1 {
     &__info{
        display: flex;
        height: 100%;
+       position: relative;
        section{
            width: 33.33%;
            display: flex;
@@ -185,6 +188,8 @@ h1 {
     figure{
         width: 350px;
         position: relative;
+        margin: 0;
+        margin-bottom: 30px;
         img{
             width: 350px;
             height: 300px;
@@ -224,6 +229,88 @@ h1 {
                 }
             }
         }
+    }
+}
+
+.mark-container{
+    position: fixed;
+    right: 36px;
+    bottom: 0;
+    background-color: $mark-color;
+    border-radius: 5px 5px 0 0 ;
+    height: 50px;
+    min-width: 370px;
+    z-index: 5;
+    display: flex;
+    padding: 0 34px;
+    justify-content: space-between;
+    flex-direction: row;
+    width: unset;
+    .total-likes{
+        display: flex;
+        align-items: center;
+        &__count{
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 31px;
+            letter-spacing: 0em;
+            text-align: right;
+
+        }
+        svg{
+            fill: #000;
+            margin-left: 5px;
+        }
+    }
+    .price{
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 31px;
+        letter-spacing: 0em;
+        text-align: right; 
+        display: flex;
+        align-items: center;
+    }
+
+}
+
+.select-container{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    label{
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 23px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-right: 25px;
+
+    }
+    select{
+        height: 50px;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 23px;
+        letter-spacing: 0em;
+        text-align: left;
+        background-color: $place-color;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        min-width: 170px;
+        option{
+            border-bottom: solid 1px #fff;
+            border: none;
+            padding:10px 0;
+            
+        }
+
     }
 }
 
