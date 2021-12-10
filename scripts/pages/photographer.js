@@ -16,57 +16,34 @@ async function getPortfolio(){
 }
 
 async function displayPortfolio(media) { 
-    // const portfolioContainer = document.querySelector(".portfolio-container"); 
-    let portfolioContainer = document.createElement('section')
-    portfolioContainer.classList.add('portfolio-container')
-    document.getElementById('main').appendChild(portfolioContainer)
+ 
+    let portfolioContainer = document.querySelector('.portfolio-container')
 
     media.forEach((media) => {
-         const mediaModel = new imageConstructor(media);
+        const mediaModel = new imageConstructor(media);
         const mediaCardDOM = mediaModel.getImageCardDOM()
         .then(response => {
             portfolioContainer.appendChild(response)
         })
-                 
-        // photographersSection.appendChild(userCardDOM);
-
-                   
+           
     });
 }
 
-// select-sorting
-async function openCloseSelect() {
-    const sorterTitle = await document.querySelector('.current-value')
-    const sortingOptions = await document.querySelector('.sorting__options')
-    const sorting = await document.querySelector('.sorting')
+// async function displaySortedPortfolio(media){
+//     let portfolioContainer = document.querySelector('.portfolio-container')
 
-    sorterTitle.addEventListener('click', function(e) {
-        sortingOptions.classList.contains('hidden') ? sortingOptions.classList.remove('hidden') : sortingOptions.classList.add('hidden')
-        if(sorting.classList.contains('sorting--closed')){
-            sorting.classList.remove('sorting--closed')
-            sorting.classList.add('sorting--opened')
-        } else{
-            sorting.classList.remove('sorting--opened')
-            sorting.classList.add('sorting--closed')
-        }
-        
-    })
-}
+//     media.forEach((media) => {
+//         const mediaModel = new imageConstructor(media);
+//         const mediaCardDOM = mediaModel.getImageCardDOM()
+//         .then(response => {
+//             portfolioContainer.appendChild(response)
+//         })
+           
+//     });
+
+// }
 
 
-
-//choosing value in select-sorting
-function chooseSelectValue(){
-    document.addEventListener('click',e => {
-        if(e.target.classList.contains('sorting__options__value')){
-            const currentElem = document.querySelector('.current-value__span')
-            const oldValue = currentElem.textContent
-            const newValue = e.target.textContent
-            e.target.textContent = oldValue
-            currentElem.textContent = newValue
-        }
-      })
-}
 
 async function init() {
     // Preparing and filling in information about the current photographer
@@ -76,22 +53,25 @@ async function init() {
     let photographInfo = await currentPhotographer.getCurrentUserCardDOM()
     currentPhotographerElem.innerHTML = photographInfo.outerHTML
 
-    // sorting
-    const main = document.getElementById('main')
-    const sorting = new sortingTemplate()
+    const selectContainer = document.querySelector('.select-container')
 
-    let getSorting = sorting.getSortingDOM()
-    main.appendChild(getSorting)
-
-    
+   
 
     // Preparing and filling portfolio of current photographer
 
     const media  = await getPortfolio()
     displayPortfolio(media)
 
-    openCloseSelect()
-     chooseSelectValue()
+    // sorting
+    const main = document.getElementById('main')
+    const sorting = new sortingTemplate(media)
+    
+    let selectForm = sorting.getSortingDOM()
+
+    selectContainer.innerHTML = selectForm
+
+    sorting.openCloseSelect()
+    sorting.chooseSelectValue()
 }
 
 init()

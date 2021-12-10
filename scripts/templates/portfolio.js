@@ -1,15 +1,3 @@
-class portfolioConstructor{
-    constructor(data){
-        this.id = data.id,
-        this.photographerId = data.photographerId,
-        this.title = data.title,
-        // this.image = data.image,
-        this.likes = data.likes,
-        this.date = data.date,
-        this.price = data.price
-    }
-}
-
 class imageConstructor{
     constructor(data){
         this.id = data.id,
@@ -42,7 +30,10 @@ class imageConstructor{
         figure.id = this.id
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
-        <a href="#"><img alt="" src="assets/portfolio/${PhotographName}/${this.image}"></a>
+        <a href="#">
+            <img alt="" src="assets/portfolio/${PhotographName}/${this.image}">
+            <span class='date'>${this.date}</span>
+        </a>
         <figcaption>
             <div class='media-name'>
                 ${this.title}
@@ -63,17 +54,17 @@ class imageConstructor{
     }
 }
 
-class videoConstructor extends portfolioConstructor{
-    constructor(data){
-        super(data.id)
-        super(data.title)
-        super(data.likes)
-        super(data.date)
-        super(data.price)
+// class videoConstructor{
+//     constructor(data){
+//         super(data.id)
+//         super(data.title)
+//         super(data.likes)
+//         super(data.date)
+//         super(data.price)
 
-        this.video = data.video
-    }
-}
+//         this.video = data.video
+//     }
+// }
 
 
 
