@@ -279,6 +279,9 @@ h1 {
 .select-container{
     margin-top: 10px;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+
     label{
         font-size: 18px;
         font-style: normal;
@@ -289,8 +292,9 @@ h1 {
         margin-right: 25px;
 
     }
-    select{
-        height: 50px;
+
+    .sorting{
+        
         font-size: 18px;
         font-style: normal;
         font-weight: 700;
@@ -300,19 +304,89 @@ h1 {
         background-color: $place-color;
         color: #fff;
         border: none;
-        border-radius: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        min-width: 170px;
-        option{
-            border-bottom: solid 1px #fff;
-            border: none;
-            padding:10px 0;
+        
+
+        min-width: 190px;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        position: relative;
+        padding: 0;
+        &--closed{
+            border-radius: 5px;
+            .current-value{
+                border-bottom: solid 1px transparent;
             
+                svg{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        &--opened{
+            border-radius: 5px 5px 0 0;
+            .current-value{
+                border-bottom: solid 1px #fff;
+          
+                
+                svg{
+                    transform: rotate(0deg);
+                }
+            }
         }
 
+
+
+        .current-value{
+           display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+            margin-left: 5px;
+            margin-right: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            
+            &:hover{
+                cursor: pointer;
+            }
+
+           
+            .sorting__options{
+                border-bottom: solid 1px #fff;
+                border: none;
+                padding: 0;
+                position: absolute;
+                z-index: 3;
+                background-color: $place-color;
+                top: 51px;
+                left: 0;
+                padding-left: 5px;
+                padding-right: 5px;
+                border-radius: 0 0 5px 5px;
+                &.hidden{
+                    display: none;
+                }
+                li{
+                    padding:10px;
+                    min-width: 160px;
+                    list-style: none;
+                    border-bottom: solid 1px #fff;
+                    &:last-child{
+                        border: none;
+                    }
+                    &:hover{
+                        cursor: pointer;
+                    }
+
+                }
+            }
+        }
     }
+   
 }
+
+
 
 
 

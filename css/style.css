@@ -249,6 +249,8 @@ h1 {
 .select-container {
   margin-top: 10px;
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
 }
 .select-container label {
   font-size: 18px;
@@ -259,8 +261,7 @@ h1 {
   text-align: left;
   margin-right: 25px;
 }
-.select-container select {
-  height: 50px;
+.select-container .sorting {
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -270,15 +271,72 @@ h1 {
   background-color: #901C1C;
   color: #fff;
   border: none;
+  min-width: 190px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  position: relative;
+  padding: 0;
+}
+.select-container .sorting--closed {
   border-radius: 5px;
+}
+.select-container .sorting--closed .current-value {
+  border-bottom: solid 1px transparent;
+}
+.select-container .sorting--closed .current-value svg {
+  transform: rotate(180deg);
+}
+.select-container .sorting--opened {
+  border-radius: 5px 5px 0 0;
+}
+.select-container .sorting--opened .current-value {
+  border-bottom: solid 1px #fff;
+}
+.select-container .sorting--opened .current-value svg {
+  transform: rotate(0deg);
+}
+.select-container .sorting .current-value {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  min-width: 170px;
 }
-.select-container select option {
+.select-container .sorting .current-value:hover {
+  cursor: pointer;
+}
+.select-container .sorting .current-value .sorting__options {
   border-bottom: solid 1px #fff;
   border: none;
-  padding: 10px 0;
+  padding: 0;
+  position: absolute;
+  z-index: 3;
+  background-color: #901C1C;
+  top: 51px;
+  left: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 0 0 5px 5px;
+}
+.select-container .sorting .current-value .sorting__options.hidden {
+  display: none;
+}
+.select-container .sorting .current-value .sorting__options li {
+  padding: 10px;
+  min-width: 160px;
+  list-style: none;
+  border-bottom: solid 1px #fff;
+}
+.select-container .sorting .current-value .sorting__options li:last-child {
+  border: none;
+}
+.select-container .sorting .current-value .sorting__options li:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

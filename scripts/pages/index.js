@@ -26,5 +26,5 @@
             const currentId = e.target.parentElement.parentElement.id // get photographer id
             localStorage.setItem( 'id', currentId ) // set id to localStorage
         }
-      });
+      })
     

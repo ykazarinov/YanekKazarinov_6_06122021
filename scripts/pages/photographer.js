@@ -32,7 +32,41 @@ async function displayPortfolio(media) {
 
                    
     });
-};
+}
+
+// select-sorting
+async function openCloseSelect() {
+    const sorterTitle = await document.querySelector('.current-value')
+    const sortingOptions = await document.querySelector('.sorting__options')
+    const sorting = await document.querySelector('.sorting')
+
+    sorterTitle.addEventListener('click', function(e) {
+        sortingOptions.classList.contains('hidden') ? sortingOptions.classList.remove('hidden') : sortingOptions.classList.add('hidden')
+        if(sorting.classList.contains('sorting--closed')){
+            sorting.classList.remove('sorting--closed')
+            sorting.classList.add('sorting--opened')
+        } else{
+            sorting.classList.remove('sorting--opened')
+            sorting.classList.add('sorting--closed')
+        }
+        
+    })
+}
+
+
+
+//choosing value in select-sorting
+function chooseSelectValue(){
+    document.addEventListener('click',e => {
+        if(e.target.classList.contains('sorting__options__value')){
+            const currentElem = document.querySelector('.current-value__span')
+            const oldValue = currentElem.textContent
+            const newValue = e.target.textContent
+            e.target.textContent = oldValue
+            currentElem.textContent = newValue
+        }
+      })
+}
 
 async function init() {
     // Preparing and filling in information about the current photographer
@@ -56,9 +90,12 @@ async function init() {
     const media  = await getPortfolio()
     displayPortfolio(media)
 
-    
-  
+    openCloseSelect()
+     chooseSelectValue()
 }
 
 init()
+
+
+
 
