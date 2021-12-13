@@ -75,6 +75,10 @@ async function init() {
     // sorting
     const main = document.getElementById('main')
     const sorting = new sortingTemplate(media)
+    // const MyLikesSubject = new LikesSubject()
+    // const MyLikesCounter = new LikesCounter()
+  
+    // MyLikesSubject.subscribe(MyLikesCounter) 
     
     let selectForm = sorting.getSortingDOM()
 

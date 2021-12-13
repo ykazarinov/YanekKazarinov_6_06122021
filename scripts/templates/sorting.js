@@ -37,6 +37,11 @@ class sortingTemplate{
 
     async sorterMedias(sorter) {
         this.clearPortfolioContainer() 
+
+        const MyLikesSubject = new LikesSubject()
+        const MyLikesCounter = new LikesCounter()
+      
+        MyLikesSubject.subscribe(MyLikesCounter) 
        
         if (!!sorter) {
             // Vous pourrez supprimer cette ligne
@@ -46,8 +51,10 @@ class sortingTemplate{
 
             const SortedMedias = sortedData.data 
 
+
+
             SortedMedias.forEach(Media => {
-                const Template = new mediaFactory(Media)
+                const Template = new mediaFactory(Media, MyLikesSubject)
                 const mediaCardDOM = Template.getMediaCardDOM()
                 .then(response => {
                     this.$portfolioContainer.appendChild(response)
@@ -57,7 +64,7 @@ class sortingTemplate{
             } 
             else {
                 this.Medias.forEach(Media => {
-                    const Template = new mediaFactory(Media)
+                    const Template = new mediaFactory(Media, MyLikesSubject)
                     this.$portfolioContainer.appendChild(Template.getMediaCardDOM())
                 })
             }
