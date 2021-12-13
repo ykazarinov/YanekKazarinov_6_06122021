@@ -207,6 +207,10 @@ h1 {
   letter-spacing: 0em;
   text-align: left;
   color: #901C1C;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 31px;
 }
 .portfolio-container figure figcaption .media-likes {
   display: flex;
@@ -214,15 +218,16 @@ h1 {
   align-items: center;
 }
 .portfolio-container figure figcaption .media-likes__count {
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
 }
-.portfolio-container figure figcaption .media-likes svg {
-  fill: #901C1C;
+.portfolio-container figure figcaption .media-likes i {
+  color: #901C1C;
+  font-size: 18px;
   margin-left: 5px;
 }
 

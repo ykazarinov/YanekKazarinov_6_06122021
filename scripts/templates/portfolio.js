@@ -1,5 +1,5 @@
 class mediaConstructor{
-    constructor(data){
+    constructor(data, LikesSubject){
         this.id = data.id,
         this.photographerId = data.photographerId,
         this.title = data.title,
@@ -7,7 +7,11 @@ class mediaConstructor{
         this.video = data.video,
         this.likes = data.likes,
         this.date = data.date,
-        this.price = data.price
+        this.price = data.price,
+
+        this.LikesSubject = LikesSubject
+
+        this.figure = document.createElement( 'figure' )
     }
 
     getCharsBefore(str, chr) {
@@ -25,11 +29,31 @@ class mediaConstructor{
         const PhotographerName = this.getCharsBefore(currentPhotographer.name, ' ')
         return PhotographerName
     }
+
+    handleLikeButton() {
+        const that = this
+        
+        this.figure
+            .querySelector('.like-btn')
+            .addEventListener('click', function() {
+                if (this.classList.contains('liked')) {
+                    this.classList.remove('liked')
+                  
+                    that.LikesSubject.fire('DEC')
+                } else {
+                    this.classList.add('liked')
+                    console.log('that.LikesSubject')
+                  console.log(that.LikesSubject)
+                    that.LikesSubject.fire('INC')
+                }
+            })
+    }
 }
 
 class imageConstructor extends mediaConstructor {
-    constructor(id, photographerId, title, image, likes, date, price){
-        super(id, photographerId, title, image, likes, date, price);
+    constructor(id, photographerId, title, image, likes, date, price, LikesSubject, figure){
+        super(id, photographerId, title, image, likes, date, price, LikesSubject, figure);
+        
     }
 
     getCharsBefore(str, chr) {
@@ -40,12 +64,16 @@ class imageConstructor extends mediaConstructor {
         return super.getCurrentPhotographName()
     }
 
+    handleLikeButton() {
+        return super.handleLikeButton()
+    }
+
 
 
     async getMediaCardDOM(){
 
-        const figure = document.createElement( 'figure' )
-        figure.id = this.id
+        
+        this.figure.id = this.id
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
         <a href="#">
@@ -53,30 +81,30 @@ class imageConstructor extends mediaConstructor {
             <span class='date'>${this.date}</span>
         </a>
         <figcaption>
-            <div class='media-name'>
+            <div class='media-name' title='${this.title}'>
                 ${this.title}
             </div>
             <div class='media-likes'>
                 <span class='media-likes__count'> ${this.likes}</span>
             
-                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.5 18.35L8.23125 17.03C3.725 12.36 0.75 9.28 0.75 5.5C0.75 2.42 2.8675 0 5.5625 0C7.085 0 8.54625 0.81 9.5 2.09C10.4537 0.81 11.915 0 13.4375 0C16.1325 0 18.25 2.42 18.25 5.5C18.25 9.28 15.275 12.36 10.7688 17.04L9.5 18.35Z"/>
-                </svg>
+                <i class="far fa-heart like-btn"></i>
             
             </div>
         </figcaption>
         
     `
-    figure.innerHTML = content
-    return (figure);
+    this.figure.innerHTML = content
+    this.handleLikeButton()
+    return (this.figure);
     }
 }
 
 // ----- video -----
 
 class videoConstructor extends mediaConstructor {
-    constructor(id, photographerId, title, video, likes, date, price){
-        super(id, photographerId, title, video, likes, date, price);
+    constructor(id, photographerId, title, video, likes, date, price, LikesSubject, figure){
+        super(id, photographerId, title, video, likes, date, price, LikesSubject, figure);
+        this.figure = document.createElement( 'figure' )
     }
 
     getCharsBefore(str, chr) {
@@ -87,9 +115,13 @@ class videoConstructor extends mediaConstructor {
         return super.getCurrentPhotographName()
     }
 
+    handleLikeButton() {
+        return super.handleLikeButton()
+    }
+
     async getMediaCardDOM(){
-        const figure = document.createElement( 'figure' )
-        figure.id = this.id
+        
+        this.figure.id = this.id
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
         <a href="#">
@@ -101,22 +133,20 @@ class videoConstructor extends mediaConstructor {
             <span class='date'>${this.date}</span>
         </a>
         <figcaption>
-            <div class='media-name'>
+            <div class='media-name' title='${this.video.split('_').join(' ').split('.')[0]}'>
                 ${this.video.split('_').join(' ').split('.')[0]}
             </div>
             <div class='media-likes'>
                 <span class='media-likes__count'> ${this.likes}</span>
             
-                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.5 18.35L8.23125 17.03C3.725 12.36 0.75 9.28 0.75 5.5C0.75 2.42 2.8675 0 5.5625 0C7.085 0 8.54625 0.81 9.5 2.09C10.4537 0.81 11.915 0 13.4375 0C16.1325 0 18.25 2.42 18.25 5.5C18.25 9.28 15.275 12.36 10.7688 17.04L9.5 18.35Z"/>
-                </svg>
+                <i class="far fa-heart like-btn"></i>
             
             </div>
         </figcaption>
         
     `
-    figure.innerHTML = content
-    return (figure);
+    this.figure.innerHTML = content
+    return (this.figure);
     }
 }
 

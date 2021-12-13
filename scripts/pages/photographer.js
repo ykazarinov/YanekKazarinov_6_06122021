@@ -16,11 +16,20 @@ async function getPortfolio(){
 }
 
 async function displayPortfolio(media) { 
+
+        // likes
+    
+        const MyLikesSubject = new LikesSubject()
+        const MyLikesCounter = new LikesCounter()
+      
+        MyLikesSubject.subscribe(MyLikesCounter) 
  
     let portfolioContainer = document.querySelector('.portfolio-container')
 
     media.forEach((media) => {
-        const mediaModel = new mediaFactory(media);
+        
+        const mediaModel = new mediaFactory(media, MyLikesSubject);
+        
         const mediaCardDOM = mediaModel.getMediaCardDOM()
         .then(response => {
             portfolioContainer.appendChild(response)
@@ -72,6 +81,8 @@ async function init() {
 
     sorting.openCloseSelect()
     sorting.chooseSelectValue()
+
+
 }
 
 init()

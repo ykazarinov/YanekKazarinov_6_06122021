@@ -235,6 +235,11 @@ h1 {
                 text-align: left;
                 color: $place-color;
 
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                height: 31px;
+
             }
             .media-likes{
                 display: flex;
@@ -242,7 +247,7 @@ h1 {
                 align-items: center;
                 &__count{
                    
-                    font-size: 16px;
+                    font-size: 18px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 19px;
@@ -250,8 +255,9 @@ h1 {
                     text-align: left;
 
                 }
-                svg{
-                    fill: $place-color;
+                i{
+                    color: $place-color;
+                    font-size: 18px;
                     margin-left: 5px;
                 }
             }

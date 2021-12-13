@@ -1,12 +1,11 @@
 class mediaFactory{
-    constructor(data){
+    constructor(data, LikesSubject){
         if(data.image){
-            return new imageConstructor(data)
+            return new imageConstructor(data, LikesSubject)
         }else if(data.video){
-            return new videoConstructor(data)
+            return new videoConstructor(data, LikesSubject)
         }else{
-            console.log(id)
-            throw 'Unknown type format 1'
+            throw 'Unknown type format'
         }
     }
 }
