@@ -48,7 +48,7 @@ class sortingTemplate{
 
             SortedMedias.forEach(Media => {
                 const Template = new mediaFactory(Media)
-                const mediaCardDOM = Template.getImageCardDOM()
+                const mediaCardDOM = Template.getMediaCardDOM()
                 .then(response => {
                     this.$portfolioContainer.appendChild(response)
                 })
@@ -58,7 +58,7 @@ class sortingTemplate{
             else {
                 this.Medias.forEach(Media => {
                     const Template = new mediaFactory(Media)
-                    this.$portfolioContainer.appendChild(Template.getImageCardDOM())
+                    this.$portfolioContainer.appendChild(Template.getMediaCardDOM())
                 })
             }
     }

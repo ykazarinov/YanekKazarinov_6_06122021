@@ -38,28 +38,28 @@ async function displayPortfolio(media) {
     });
 }
 
-// async function displaySortedPortfolio(media){
-//     let portfolioContainer = document.querySelector('.portfolio-container')
+async function totalLikes(){
+    let total = 0
+    const arrCounts = await getPortfolio()
+    
+    arrCounts.forEach( (media) =>{
+       total = total + media.likes
+    })
 
-//     media.forEach((media) => {
-//         const mediaModel = new imageConstructor(media);
-//         const mediaCardDOM = mediaModel.getImageCardDOM()
-//         .then(response => {
-//             portfolioContainer.appendChild(response)
-//         })
-           
-//     });
-
-// }
-
-
+    
+    return total
+}
 
 async function init() {
+    
+    let total = await totalLikes()
+    
     // Preparing and filling in information about the current photographer
     const currentPhotographerElem = document.querySelector('.photograph-header')
     let currentPhotographArray = await getCurrentPhotograph()
     const currentPhotographer = new photographerTemplate(currentPhotographArray)
-    let photographInfo = await currentPhotographer.getCurrentUserCardDOM()
+   
+    let photographInfo = await currentPhotographer.getCurrentUserCardDOM(total)
     currentPhotographerElem.innerHTML = photographInfo.outerHTML
 
     const selectContainer = document.querySelector('.select-container')
@@ -70,7 +70,8 @@ async function init() {
 
     const media  = await getPortfolio()
     displayPortfolio(media)
-
+    
+    
     // sorting
     const main = document.getElementById('main')
     const sorting = new sortingTemplate(media)

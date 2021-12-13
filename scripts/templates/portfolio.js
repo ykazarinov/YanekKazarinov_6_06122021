@@ -38,13 +38,20 @@ class mediaConstructor{
             .addEventListener('click', function() {
                 if (this.classList.contains('liked')) {
                     this.classList.remove('liked')
-                  
+                    this.classList.add('far')
+                    this.classList.remove('fas')
                     that.LikesSubject.fire('DEC')
+                    let howMutchlikes =  Number(this.parentElement.querySelector('.media-likes__count').textContent)
+                    howMutchlikes -= 1
+                    this.parentElement.querySelector('.media-likes__count').textContent = howMutchlikes
                 } else {
                     this.classList.add('liked')
-                    console.log('that.LikesSubject')
-                  console.log(that.LikesSubject)
+                    this.classList.add('fas')
+                    this.classList.remove('far')
                     that.LikesSubject.fire('INC')
+                    let howMutchlikes =  Number(this.parentElement.querySelector('.media-likes__count').textContent)
+                    howMutchlikes += 1
+                    this.parentElement.querySelector('.media-likes__count').textContent = howMutchlikes
                 }
             })
     }
@@ -146,6 +153,7 @@ class videoConstructor extends mediaConstructor {
         
     `
     this.figure.innerHTML = content
+    this.handleLikeButton()
     return (this.figure);
     }
 }
