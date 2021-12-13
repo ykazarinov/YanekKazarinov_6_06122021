@@ -22,7 +22,7 @@ class RatingSorterApi {
             
             return {
                         key: orderBy,
-                        data: Array.from(data).sort((a, b) => a.likes - b.likes)
+                        data: Array.from(data).sort((a, b) => b.likes - a.likes)
                     }
 
                    

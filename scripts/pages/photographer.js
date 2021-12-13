@@ -20,8 +20,8 @@ async function displayPortfolio(media) {
     let portfolioContainer = document.querySelector('.portfolio-container')
 
     media.forEach((media) => {
-        const mediaModel = new imageConstructor(media);
-        const mediaCardDOM = mediaModel.getImageCardDOM()
+        const mediaModel = new mediaFactory(media);
+        const mediaCardDOM = mediaModel.getMediaCardDOM()
         .then(response => {
             portfolioContainer.appendChild(response)
         })
