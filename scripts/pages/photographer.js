@@ -84,7 +84,7 @@ async function init() {
     let selectForm = sorting.getSortingDOM()
 
     selectContainer.innerHTML = selectForm
-
+    sorting.hover()
     sorting.openCloseSelect()
     sorting.chooseSelectValue(total, MyLikesSubject)
 

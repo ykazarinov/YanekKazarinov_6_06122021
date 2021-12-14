@@ -1,4 +1,8 @@
 @import url("photographer.css");
+.black-text {
+  color: #000;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -312,8 +316,8 @@ h1 {
 .select-container .sorting--closed .current-value {
   border-bottom: solid 1px transparent;
 }
-.select-container .sorting--closed .current-value svg {
-  transform: rotate(180deg);
+.select-container .sorting--closed .current-value__span {
+  border-radius: 5px;
 }
 .select-container .sorting--opened {
   border-radius: 5px 5px 0 0;
@@ -321,8 +325,8 @@ h1 {
 .select-container .sorting--opened .current-value {
   border-bottom: solid 1px #fff;
 }
-.select-container .sorting--opened .current-value svg {
-  transform: rotate(0deg);
+.select-container .sorting--opened .current-value__span {
+  border-radius: 5px 5px 0 0;
 }
 .select-container .sorting .current-value {
   display: flex;
@@ -330,13 +334,35 @@ h1 {
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  position: relative;
+}
+.select-container .sorting .current-value i {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+.select-container .sorting .current-value i:hover + .current-value__span {
+  background-color: #DB8876;
+  color: #000;
 }
 .select-container .sorting .current-value:hover {
   cursor: pointer;
+}
+.select-container .sorting .current-value:hover li {
+  color: #fff;
+  background-color: #901C1C;
+}
+.select-container .sorting .current-value__span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.select-container .sorting .current-value__span:hover {
+  background-color: #DB8876;
+  color: #000;
 }
 .select-container .sorting .current-value .sorting__options {
   border-bottom: solid 1px #fff;
@@ -347,16 +373,15 @@ h1 {
   background-color: #901C1C;
   top: 51px;
   left: 0;
-  padding-left: 5px;
-  padding-right: 5px;
   border-radius: 0 0 5px 5px;
+  overflow: hidden;
 }
 .select-container .sorting .current-value .sorting__options.hidden {
   display: none;
 }
 .select-container .sorting .current-value .sorting__options li {
   padding: 10px;
-  min-width: 160px;
+  min-width: 170px;
   list-style: none;
   border-bottom: solid 1px #fff;
 }
@@ -365,6 +390,8 @@ h1 {
 }
 .select-container .sorting .current-value .sorting__options li:hover {
   cursor: pointer;
+  background-color: #DB8876;
+  color: #000;
 }
 
 /*# sourceMappingURL=style.css.map */
