@@ -15,14 +15,11 @@ async function getPortfolio(){
     return portfolio
 }
 
-async function displayPortfolio(media) { 
+async function displayPortfolio(media, MyLikesSubject) { 
 
-        // likes
-    
-        const MyLikesSubject = new LikesSubject()
-        const MyLikesCounter = new LikesCounter()
-      
-        MyLikesSubject.subscribe(MyLikesCounter) 
+
+
+
  
     let portfolioContainer = document.querySelector('.portfolio-container')
 
@@ -46,7 +43,7 @@ async function totalLikes(){
        total = total + media.likes
     })
 
-    
+
     return total
 }
 
@@ -69,23 +66,27 @@ async function init() {
     // Preparing and filling portfolio of current photographer
 
     const media  = await getPortfolio()
-    displayPortfolio(media)
+            // likes
+    
+            let MyLikesSubject = new LikesSubject()
+        
+            const MyLikesCounter = new LikesCounter()
+          
+            MyLikesSubject.subscribe(MyLikesCounter) 
+    displayPortfolio(media, MyLikesSubject)
     
     
     // sorting
     const main = document.getElementById('main')
-    const sorting = new sortingTemplate(media)
-    // const MyLikesSubject = new LikesSubject()
-    // const MyLikesCounter = new LikesCounter()
-  
-    // MyLikesSubject.subscribe(MyLikesCounter) 
     
+    const sorting = new sortingTemplate(media, MyLikesSubject)
+      
     let selectForm = sorting.getSortingDOM()
 
     selectContainer.innerHTML = selectForm
 
     sorting.openCloseSelect()
-    sorting.chooseSelectValue()
+    sorting.chooseSelectValue(total, MyLikesSubject)
 
 
 }

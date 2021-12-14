@@ -5,6 +5,8 @@ class sortingTemplate{
 
         this.$portfolioContainer = document.querySelector('.portfolio-container')
         this.ProxyRatingSorter = new ProxyRatingSorter()
+
+       
        
     }
 
@@ -35,12 +37,15 @@ class sortingTemplate{
 
 
 
-    async sorterMedias(sorter) {
+    async sorterMedias(sorter, LikesSubject) {
         this.clearPortfolioContainer() 
 
-        const MyLikesSubject = new LikesSubject()
+        const MyLikesSubject = LikesSubject
+        console.log(MyLikesSubject)
+        MyLikesSubject.unsubscribe(LikesCounter)
+
         const MyLikesCounter = new LikesCounter()
-      
+        
         MyLikesSubject.subscribe(MyLikesCounter) 
        
         if (!!sorter) {
@@ -72,7 +77,10 @@ class sortingTemplate{
 
 
     //choosing value in select-sorting
-    chooseSelectValue(){
+    chooseSelectValue(total, LikesSubject){
+       
+        // console.log(LikesSubject)
+
         document.addEventListener('click',e => {
             e.preventDefault()
             if(e.target.classList.contains('sorting__options__value')){
@@ -87,13 +95,16 @@ class sortingTemplate{
                 currentElem.setAttribute('value', newTextValue)
 
                 // console.log(currentElem.getAttribute('value'))
-                this.sorterMedias(currentElem.getAttribute('value'))
+                document.querySelector('.total-likes__count').innerHTML = total
+                this.sorterMedias(currentElem.getAttribute('value'), LikesSubject)
+
+                
             }
         })
     }
 
     getSortingDOM(){
-        
+
         // this.selectContainer.classList.add('select-container')
         let content = `
             <label for="sorting">Trier par</label>
