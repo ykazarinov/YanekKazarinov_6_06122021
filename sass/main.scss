@@ -198,11 +198,15 @@ h1 {
         margin-bottom: 30px;
         a{
             position: relative;
+            display: block;
+            width: 350px;
+            height: 300px;
             img{
             width: 350px;
             height: 300px;
             object-fit: cover;
             border-radius: 5px;
+            
             }
             .date{
                 display: none;
@@ -469,6 +473,69 @@ h1 {
         }
     }
    
+}
+
+.for-lightbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox{
+    &__bg{
+        position: fixed;
+        background-color: rgba($color: #000000, $alpha: .5);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 6;
+    }
+
+    &__container{
+        background-color: #fff;
+        position: fixed;
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 5px;
+        top: 5%;
+        margin: auto;
+        z-index: 7;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    &__close{
+        display: flex;
+        justify-content: flex-end;
+        i{
+            color: $place-color;
+            font-size: 1.5rem;
+        }
+        
+    }
+    &__slider{
+        display: flex;
+        align-content: center;
+        
+        .left_arrow, .right_arrow{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+
+            i{
+                color: $place-color;
+                font-size: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+        figure{
+            display: flex;
+            flex-direction: column;
+        }
+        
+    }
 }
 
 

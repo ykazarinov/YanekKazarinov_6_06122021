@@ -30,6 +30,9 @@ class mediaConstructor{
         return PhotographerName
     }
 
+
+
+
     handleLikeButton() {
         const that = this
         
@@ -75,6 +78,28 @@ class imageConstructor extends mediaConstructor {
         return super.handleLikeButton()
     }
 
+    openLightBox(id, photographerId, title, image){
+        this.figure.addEventListener('click', function(e) {
+            
+            if(e.target.parentElement.parentElement.id === this.id){
+                const lightbox = new lightBox(id, photographerId, title, image)
+              
+            
+                let forLightBox = document.querySelector('.for-lightbox')
+                forLightBox.innerHTML = lightbox.getLightBox(id, photographerId, title, image).innerHTML
+            }
+            else{
+                console.log('e.target.id != this.id')
+
+            }
+            
+
+            // return lightbox.getLightBox()
+        })
+
+       
+    }
+
 
 
     async getMediaCardDOM(){
@@ -101,7 +126,12 @@ class imageConstructor extends mediaConstructor {
         
     `
     this.figure.innerHTML = content
+
+
+        
+
     this.handleLikeButton()
+    this.openLightBox(this.id, this.photographerId, this.title, this.image)
     return (this.figure);
     }
 }
@@ -154,6 +184,7 @@ class videoConstructor extends mediaConstructor {
     `
     this.figure.innerHTML = content
     this.handleLikeButton()
+    // this.openLightBox(data)
     return (this.figure);
     }
 }

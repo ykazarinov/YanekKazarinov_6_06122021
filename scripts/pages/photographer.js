@@ -31,6 +31,7 @@ async function displayPortfolio(media, MyLikesSubject) {
         .then(response => {
             portfolioContainer.appendChild(response)
         })
+        
            
     });
 }

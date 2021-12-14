@@ -174,6 +174,9 @@ h1 {
 }
 .portfolio-container figure a {
   position: relative;
+  display: block;
+  width: 350px;
+  height: 300px;
 }
 .portfolio-container figure a img {
   width: 350px;
@@ -392,6 +395,62 @@ h1 {
   cursor: pointer;
   background-color: #DB8876;
   color: #000;
+}
+
+.for-lightbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox__bg {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 6;
+}
+.lightbox__container {
+  background-color: #fff;
+  position: fixed;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 5px;
+  top: 5%;
+  margin: auto;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.lightbox__close {
+  display: flex;
+  justify-content: flex-end;
+}
+.lightbox__close i {
+  color: #901C1C;
+  font-size: 1.5rem;
+}
+.lightbox__slider {
+  display: flex;
+  align-content: center;
+}
+.lightbox__slider .left_arrow, .lightbox__slider .right_arrow {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+.lightbox__slider .left_arrow i, .lightbox__slider .right_arrow i {
+  color: #901C1C;
+  font-size: 1.5rem;
+  height: 1.5rem;
+}
+.lightbox__slider figure {
+  display: flex;
+  flex-direction: column;
 }
 
 /*# sourceMappingURL=style.css.map */
