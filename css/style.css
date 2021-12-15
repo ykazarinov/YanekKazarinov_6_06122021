@@ -405,7 +405,7 @@ h1 {
 
 .lightbox__bg {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
   top: 0;
@@ -415,8 +415,8 @@ h1 {
 .lightbox__container {
   background-color: #fff;
   position: fixed;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 90vw;
+  max-height: 90vh;
   border-radius: 5px;
   top: 5%;
   margin: auto;
@@ -451,6 +451,17 @@ h1 {
 .lightbox__slider figure {
   display: flex;
   flex-direction: column;
+}
+.lightbox__slider figure img {
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 5px;
+}
+.lightbox__slider figure figcapture {
+  color: #901C1C;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */

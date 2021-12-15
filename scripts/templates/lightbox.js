@@ -1,9 +1,11 @@
 class lightBox extends mediaConstructor{
-    constructor(id, photographerId, title, image){
-        super(id, photographerId, title, image)
+    constructor(id){
+        super(id)
         
         this.lightBox = document.createElement( 'div' )
-        this.photographName = ''
+        
+
+    
         
     }
 
@@ -13,22 +15,22 @@ class lightBox extends mediaConstructor{
 
     async getCurrentPhotographName(photographerId) {
         const { photographers } = await getPhotographers()
-        .then(function(result) {
-            const currentPhotographer =  result.photographers.find(photographer => photographer.id == photographerId)
-            // const PhotographerName = this.getCharsBefore(currentPhotographer.name, ' ')
-            const PhotographerName = currentPhotographer.name.replace(/\s+/g, '')
-            console.log(PhotographerName)
-           
-            return PhotographerName
-        }
         
-       
+            const currentPhotographer =  photographers.find(photographer => photographer.id == photographerId)
+            const PhotographerName = this.getCharsBefore(currentPhotographer.name, ' ')
+            // const PhotographerName = currentPhotographer.name.replace(/\s+/g, '')
+            return PhotographerName
   
-        )}
+        }
 
     async getLightBox(id, photographerId, title, image){
-        const PhotographName = await this.getCurrentPhotographName(photographerId)
-        console.log(PhotographName)
+        let result = this.getCurrentPhotographName(photographerId)
+        .then(reponse => {
+            
+            let PhotographName = reponse
+            
+        
+        
         this.lightBox.classList.add('lightbox')
         let content = `
         <div class='lightbox__container'>
@@ -49,7 +51,10 @@ class lightBox extends mediaConstructor{
 
 
         this.lightBox.innerHTML = content
-        
+       
         return (this.lightBox);
+
+    })
+    return result;
     }
 }

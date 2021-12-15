@@ -79,14 +79,20 @@ class imageConstructor extends mediaConstructor {
     }
 
     openLightBox(id, photographerId, title, image){
-        this.figure.addEventListener('click', function(e) {
+        this.figure.addEventListener('click', async function(e) {
             
             if(e.target.parentElement.parentElement.id === this.id){
-                const lightbox = new lightBox(id, photographerId, title, image)
+                const lightbox = new lightBox(id)
               
             
                 let forLightBox = document.querySelector('.for-lightbox')
-                forLightBox.innerHTML = lightbox.getLightBox(id, photographerId, title, image).innerHTML
+              
+                let content = await lightbox.getLightBox(id, photographerId, title, image)
+                .then(reponse => {
+                    console.log(reponse)
+                    forLightBox.innerHTML = reponse.innerHTML
+                })
+                
             }
             else{
                 console.log('e.target.id != this.id')
