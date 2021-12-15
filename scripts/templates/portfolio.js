@@ -89,8 +89,9 @@ class imageConstructor extends mediaConstructor {
               
                 let content = await lightbox.getLightBox(id, photographerId, title, image)
                 .then(reponse => {
-                    console.log(reponse)
+                    
                     forLightBox.innerHTML = reponse.innerHTML
+                    lightbox.closeLightbox()
                 })
                 
             }
@@ -138,6 +139,7 @@ class imageConstructor extends mediaConstructor {
 
     this.handleLikeButton()
     this.openLightBox(this.id, this.photographerId, this.title, this.image)
+    
     return (this.figure);
     }
 }

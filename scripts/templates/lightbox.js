@@ -18,10 +18,17 @@ class lightBox extends mediaConstructor{
         
             const currentPhotographer =  photographers.find(photographer => photographer.id == photographerId)
             const PhotographerName = this.getCharsBefore(currentPhotographer.name, ' ')
-            // const PhotographerName = currentPhotographer.name.replace(/\s+/g, '')
             return PhotographerName
   
         }
+
+    closeLightbox(){
+        const closeBtn = document.querySelector('.lightbox__close')
+        const lightBox = document.querySelector('.for-lightbox')
+        closeBtn.addEventListener('click', function(e){
+            lightBox.innerHTML = ''
+        })
+    }
 
     async getLightBox(id, photographerId, title, image){
         let result = this.getCurrentPhotographName(photographerId)
