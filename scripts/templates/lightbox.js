@@ -22,6 +22,54 @@ class lightBox extends mediaConstructor{
   
         }
 
+    async getAllMediaOfCurrentAuthor(currentId){
+        const { media } = await getPhotographers()
+        const portfolio = await media.filter(media => media.photographerId == currentId)
+        return portfolio
+    }
+
+    async rightArrowClick(id, authorId, authorName){
+        let rightArrow = document.querySelector('.fa-chevron-right')
+        let photoElem = document.querySelector('.lightbox__slider figure img')
+        let titleElem = document.querySelector('.lightbox__slider figure figcapture')
+        let currentId = id
+        let nextId
+        let portfolio = await this.getAllMediaOfCurrentAuthor(authorId)
+
+        rightArrow.addEventListener('click', async function(){
+
+            if(nextId){
+                currentId = nextId
+            }
+            console.log(portfolio.length)
+            portfolio.forEach(function(item, index) {
+                
+                if(item.id === currentId){
+                    // console.log("Current: " + item.id);
+                    if (index > 0) {
+                        // console.log("Previous: " + portfolio[index - 1].id);
+                    }
+                    if (index < portfolio.length - 1) {
+                        // console.log("Next: " + portfolio[index + 1].id);
+                        nextId = portfolio[index + 1].id
+                        let photoName = portfolio.find(media => media.id === nextId).image
+                        let photoTitle = portfolio.find(media => media.id === nextId).title
+                        console.log(titleElem)
+                        photoElem.setAttribute('src', `assets/portfolio/${authorName}/${photoName}`)
+                        titleElem.textContent = photoTitle
+                    }
+                    if(index + 2 == portfolio.length){
+                        rightArrow.classList.add('hidden')
+                    }else{
+                        if(rightArrow.classList.contains('hidden')){
+                            rightArrow.classList.remote('hidden')
+                        }
+                    }
+                }
+            });
+        })
+    }
+
     closeLightbox(){
         const closeBtn = document.querySelector('.lightbox__close')
         const lightBox = document.querySelector('.for-lightbox')
@@ -59,7 +107,7 @@ class lightBox extends mediaConstructor{
 
         this.lightBox.innerHTML = content
        
-        return (this.lightBox);
+        return [this.lightBox, PhotographName];
 
     })
     return result;

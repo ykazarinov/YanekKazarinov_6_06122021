@@ -90,8 +90,10 @@ class imageConstructor extends mediaConstructor {
                 let content = await lightbox.getLightBox(id, photographerId, title, image)
                 .then(reponse => {
                     
-                    forLightBox.innerHTML = reponse.innerHTML
+                    forLightBox.innerHTML = reponse[0].innerHTML
+                    let authorName = reponse[1]
                     lightbox.closeLightbox()
+                    lightbox.rightArrowClick(id, photographerId, authorName)
                 })
                 
             }

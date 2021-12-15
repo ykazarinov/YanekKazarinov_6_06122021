@@ -3,6 +3,10 @@
   color: #000;
 }
 
+.hidden {
+  display: none !important;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
