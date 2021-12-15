@@ -94,6 +94,7 @@ class imageConstructor extends mediaConstructor {
                     let authorName = reponse[1]
                     lightbox.closeLightbox()
                     lightbox.rightArrowClick(id, photographerId, authorName)
+                    lightbox.leftArrowClick(id, photographerId, authorName)
                 })
                 
             }
