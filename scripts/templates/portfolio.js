@@ -173,7 +173,7 @@ class videoConstructor extends mediaConstructor {
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
         <a href="#">
-            <video controls>
+            <video alt='${this.video.split('_').join(' ').split('.')[0]}' controls>
                 <source src="assets/portfolio/${PhotographName}/${this.video}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>

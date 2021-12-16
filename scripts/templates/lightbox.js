@@ -30,7 +30,7 @@ class lightBox extends mediaConstructor{
 
     async arrowClick(id, authorId, authorName){
         let rightArrow = document.querySelector('.fa-chevron-right')
-        let photoElem = document.querySelector('.lightbox__slider figure img')
+        let mediaElem = document.querySelector('.lightbox__slider figure')
         let titleElem = document.querySelector('.lightbox__slider figure figcapture')
         let currentId = id
         let nextId
@@ -67,18 +67,26 @@ class lightBox extends mediaConstructor{
                     }
                     if (index < portfolio.length - 1) {
                         nextId = portfolio[index + 1].id
-                        let photoName = portfolio.find(media => media.id === nextId).image
-                        let photoTitle = portfolio.find(media => media.id === nextId).title
-                        photoElem.setAttribute('src', `assets/portfolio/${authorName}/${photoName}`)
-                        titleElem.textContent = photoTitle
+                        let mediaTitle = portfolio.find(media => media.id === nextId).title
+
+                        
+                        if(portfolio.find(media => media.id === nextId).image){
+                            let photoName = portfolio.find(media => media.id === nextId).image
+                            mediaElem.innerHTML = `<img alt='${mediaTitle}' src='assets/portfolio/${authorName}/${photoName}'>
+                            <figcapture title='${mediaTitle}'>${mediaTitle}</figcapture>`
+                        }else if(portfolio.find(media => media.id === nextId).video){
+                            let videoName = portfolio.find(media => media.id === nextId).video
+                            let videoTitle = videoName.split('_').join(' ').split('.')[0]
+                            mediaElem.innerHTML = `<video alt='${videoTitle}' controls>
+                            <source src="assets/portfolio/${authorName}/${videoName}" type="video/mp4">
+                            Your browser does not support the video tag.
+                            </video>
+                            <figcapture title='${videoTitle}'>
+                            ${videoTitle}</figcapture>`
+                        }
+                        titleElem.textContent = mediaTitle
+                        
                     }
-                    // if(index + 2 == portfolio.length){
-                    //     rightArrow.classList.add('hidden')
-                    // }else{
-                    //     if(rightArrow.classList.contains('hidden')){
-                    //         rightArrow.classList.remote('hidden')
-                    //     }
-                    // }
                     if(index === portfolio.length-2){
                         rightArrow.classList.add('hidden')
                     }
@@ -96,19 +104,28 @@ class lightBox extends mediaConstructor{
         })
 
         leftArrow.addEventListener('click', async function(){
-                nextId = currentId
-
-           
-           
-
+            nextId = currentId
             portfolio.forEach(function(item, index) {
                 if(item.id === currentId){
                     if (index > 0) {
                         prevId = portfolio[index - 1].id
-                        let photoName = portfolio.find(media => media.id === prevId).image
-                        let photoTitle = portfolio.find(media => media.id === prevId).title
-                        photoElem.setAttribute('src', `assets/portfolio/${authorName}/${photoName}`)
-                        titleElem.textContent = photoTitle
+                        let mediaTitle = portfolio.find(media => media.id === prevId).title
+                        
+                        if(portfolio.find(media => media.id === prevId).image){
+                            let photoName = portfolio.find(media => media.id === prevId).image
+                            mediaElem.innerHTML = `<img alt='${mediaTitle}' src='assets/portfolio/${authorName}/${photoName}'>
+                            <figcapture title='${mediaTitle}'>${mediaTitle}</figcapture>`
+                        }else if(portfolio.find(media => media.id === prevId).video){
+                            let videoName = portfolio.find(media => media.id === prevId).video
+                            let videoTitle = videoName.split('_').join(' ').split('.')[0]
+                            mediaElem.innerHTML = `<video alt='${videoTitle}' controls>
+                            <source src="assets/portfolio/${authorName}/${videoName}" type="video/mp4">
+                            Your browser does not support the video tag.
+                            </video>
+                            <figcapture title='${videoTitle}'>
+                            ${videoTitle}</figcapture>`
+                        }
+
                     }
                     if (index < portfolio.length - 1) {
                     }
@@ -123,7 +140,6 @@ class lightBox extends mediaConstructor{
                 }
             });
             if(prevId){
-                
                 currentId = prevId
             }
         })

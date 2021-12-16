@@ -498,7 +498,7 @@ h1 {
     &__container{
         background-color: #fff;
         position: fixed;
-        width: 60vw;
+        width: 70vw;
         height: 85vh;
 
         border-radius: 5px;
@@ -542,7 +542,7 @@ h1 {
             display: flex;
             flex-direction: column;
 
-            img{
+            img, video{
  
                 max-height: 70vh;
                 object-fit: contain;
