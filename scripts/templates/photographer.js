@@ -15,8 +15,8 @@ class photographerTemplate{
         const article = document.createElement( 'article' )
         article.id = this.id
         let content = `
-        <a href="photographer.html"><img class="img_link" alt="" src="assets/photographers/${this.portrait}"></a>
-        <h2><a class="title_link" href="photographer.html">${this.name}</a></h2>
+        <a href="photographer.html?id=${article.id}"><img class="img_link" alt="${this.name}" src="assets/photographers/${this.portrait}"></a>
+        <h2><a class="title_link" href="photographer.html?id=${article.id}">${this.name}</a></h2>
         <div class="infoPlus">
             <div class="place">${this.city}, ${this.country}</div>
             <div class="tagline">${this.tagline}</div>

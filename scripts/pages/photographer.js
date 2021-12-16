@@ -1,7 +1,10 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-let currentId = localStorage['id']
-    // localStorage.removeItem( 'id' )
+// let currentId = localStorage['id']
+const urlSearchParams = new URLSearchParams(window.location.search)
+const params = Object.fromEntries(urlSearchParams.entries());
+let currentId = params.id
+
 
 async function getCurrentPhotograph() {
     const { photographers } = await getPhotographers()
