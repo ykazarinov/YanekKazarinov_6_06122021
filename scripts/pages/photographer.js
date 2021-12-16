@@ -5,6 +5,8 @@ const urlSearchParams = new URLSearchParams(window.location.search)
 const params = Object.fromEntries(urlSearchParams.entries());
 let currentId = params.id
 
+let sorterOrderBy
+
 
 async function getCurrentPhotograph() {
     const { photographers } = await getPhotographers()

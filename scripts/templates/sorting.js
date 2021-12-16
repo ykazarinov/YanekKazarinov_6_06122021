@@ -70,7 +70,7 @@ class sortingTemplate{
         if (!!sorter) {
             // Vous pourrez supprimer cette ligne
             //  const sortedData = await RatingSorterApi.sorter(this.Medias, sorter)
-
+            
             const sortedData = await this.ProxyRatingSorter.sorter(this.Medias, sorter)
 
             const SortedMedias = sortedData.data 

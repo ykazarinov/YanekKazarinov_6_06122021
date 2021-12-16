@@ -4,7 +4,7 @@ class lightBox extends mediaConstructor{
         
         this.lightBox = document.createElement( 'div' )
         
-
+        this.ProxyRatingSorter = new ProxyRatingSorter()
     
         
     }
@@ -25,19 +25,32 @@ class lightBox extends mediaConstructor{
     async getAllMediaOfCurrentAuthor(currentId){
         const { media } = await getPhotographers()
         const portfolio = await media.filter(media => media.photographerId == currentId)
-        return portfolio
+        let myPortfolio = ''
+       
+        // Place the images in the currently selected order
+        if (sorterOrderBy){
+           myPortfolio = await this.ProxyRatingSorter.sorter(portfolio, sorterOrderBy)
+           return myPortfolio.data
+        }
+        // If the order is not selected, then we take the data directly from the source (in an unsorted form)
+        else{
+            return portfolio
+        }
+        
+
+        
     }
 
     async arrowClick(id, authorId, authorName){
         let rightArrow = document.querySelector('.fa-chevron-right')
-        let mediaElem = document.querySelector('.lightbox__slider figure')
-        let titleElem = document.querySelector('.lightbox__slider figure figcapture')
+        let leftArrow = document.querySelector('.fa-chevron-left')
+
         let currentId = id
         let nextId
-        let portfolio = await this.getAllMediaOfCurrentAuthor(authorId)
-        let leftArrow = document.querySelector('.fa-chevron-left')
         let prevId
 
+        let portfolio = await this.getAllMediaOfCurrentAuthor(authorId)
+        console.log(portfolio)
 
         // set initial values
         portfolio.forEach(function(item, index) {
@@ -57,35 +70,34 @@ class lightBox extends mediaConstructor{
             }
         })
 
+        function rightOrLeftClick(secondId){
+            let mediaElem = document.querySelector('.lightbox__slider figure')
+            let mediaTitle = portfolio.find(media => media.id === secondId).title
+            if(portfolio.find(media => media.id === secondId).image){
+                let photoName = portfolio.find(media => media.id === secondId).image
+                mediaElem.innerHTML = `<img alt='${mediaTitle}' src='assets/portfolio/${authorName}/${photoName}'>
+                <figcapture title='${mediaTitle}'>${mediaTitle}</figcapture>`
+            }else if(portfolio.find(media => media.id === secondId).video){
+                let videoName = portfolio.find(media => media.id === secondId).video
+                let videoTitle = videoName.split('_').join(' ').split('.')[0]
+                mediaElem.innerHTML = `<video alt='${videoTitle}' controls>
+                <source src="assets/portfolio/${authorName}/${videoName}" type="video/mp4">
+                Your browser does not support the video tag.
+                </video>
+                <figcapture title='${videoTitle}'>
+                ${videoTitle}</figcapture>`
+            }
+        }
+
 
         rightArrow.addEventListener('click', async function(){
             prevId = currentId
 
             portfolio.forEach(function(item, index) {
                 if(item.id === currentId){
-                    if (index > 0) {
-                    }
                     if (index < portfolio.length - 1) {
                         nextId = portfolio[index + 1].id
-                        let mediaTitle = portfolio.find(media => media.id === nextId).title
-
-                        
-                        if(portfolio.find(media => media.id === nextId).image){
-                            let photoName = portfolio.find(media => media.id === nextId).image
-                            mediaElem.innerHTML = `<img alt='${mediaTitle}' src='assets/portfolio/${authorName}/${photoName}'>
-                            <figcapture title='${mediaTitle}'>${mediaTitle}</figcapture>`
-                        }else if(portfolio.find(media => media.id === nextId).video){
-                            let videoName = portfolio.find(media => media.id === nextId).video
-                            let videoTitle = videoName.split('_').join(' ').split('.')[0]
-                            mediaElem.innerHTML = `<video alt='${videoTitle}' controls>
-                            <source src="assets/portfolio/${authorName}/${videoName}" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                            <figcapture title='${videoTitle}'>
-                            ${videoTitle}</figcapture>`
-                        }
-                        titleElem.textContent = mediaTitle
-                        
+                        rightOrLeftClick(nextId)
                     }
                     if(index === portfolio.length-2){
                         rightArrow.classList.add('hidden')
@@ -109,27 +121,8 @@ class lightBox extends mediaConstructor{
                 if(item.id === currentId){
                     if (index > 0) {
                         prevId = portfolio[index - 1].id
-                        let mediaTitle = portfolio.find(media => media.id === prevId).title
-                        
-                        if(portfolio.find(media => media.id === prevId).image){
-                            let photoName = portfolio.find(media => media.id === prevId).image
-                            mediaElem.innerHTML = `<img alt='${mediaTitle}' src='assets/portfolio/${authorName}/${photoName}'>
-                            <figcapture title='${mediaTitle}'>${mediaTitle}</figcapture>`
-                        }else if(portfolio.find(media => media.id === prevId).video){
-                            let videoName = portfolio.find(media => media.id === prevId).video
-                            let videoTitle = videoName.split('_').join(' ').split('.')[0]
-                            mediaElem.innerHTML = `<video alt='${videoTitle}' controls>
-                            <source src="assets/portfolio/${authorName}/${videoName}" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                            <figcapture title='${videoTitle}'>
-                            ${videoTitle}</figcapture>`
-                        }
-
+                        rightOrLeftClick(prevId)
                     }
-                    if (index < portfolio.length - 1) {
-                    }
-
                     if(index-1 == 0){
                         leftArrow.classList.add('hidden')
                     }else{
