@@ -419,8 +419,8 @@ h1 {
 .lightbox__container {
   background-color: #fff;
   position: fixed;
-  max-width: 90vw;
-  max-height: 90vh;
+  width: 60vw;
+  height: 85vh;
   border-radius: 5px;
   top: 5%;
   margin: auto;
@@ -440,6 +440,8 @@ h1 {
 .lightbox__slider {
   display: flex;
   align-content: center;
+  justify-content: space-between;
+  height: 100%;
 }
 .lightbox__slider .left_arrow, .lightbox__slider .right_arrow {
   display: flex;

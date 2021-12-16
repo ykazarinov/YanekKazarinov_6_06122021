@@ -28,90 +28,109 @@ class lightBox extends mediaConstructor{
         return portfolio
     }
 
-    async rightArrowClick(id, authorId, authorName){
+    async arrowClick(id, authorId, authorName){
         let rightArrow = document.querySelector('.fa-chevron-right')
         let photoElem = document.querySelector('.lightbox__slider figure img')
         let titleElem = document.querySelector('.lightbox__slider figure figcapture')
         let currentId = id
         let nextId
         let portfolio = await this.getAllMediaOfCurrentAuthor(authorId)
+        let leftArrow = document.querySelector('.fa-chevron-left')
+        let prevId
+
+
+        // set initial values
+        portfolio.forEach(function(item, index) {
+            if(item.id === currentId){
+                if(index > 0){
+                    prevId = portfolio[index - 1].id;
+                }
+                if(index < portfolio.length-1){
+                    nextId = portfolio[index + 1].id;
+                }
+                if(index === 0){
+                    leftArrow.classList.add('hidden')
+                }
+                if(index === portfolio.length-1){
+                    rightArrow.classList.add('hidden')
+                }
+            }
+        })
+
 
         rightArrow.addEventListener('click', async function(){
+            prevId = currentId
 
-            if(nextId){
-                currentId = nextId
-            }
-            // console.log(portfolio.length)
             portfolio.forEach(function(item, index) {
-                
                 if(item.id === currentId){
-                    // console.log("Current: " + item.id);
                     if (index > 0) {
-                        // console.log("Previous: " + portfolio[index - 1].id);
                     }
                     if (index < portfolio.length - 1) {
-                        // console.log("Next: " + portfolio[index + 1].id);
                         nextId = portfolio[index + 1].id
                         let photoName = portfolio.find(media => media.id === nextId).image
                         let photoTitle = portfolio.find(media => media.id === nextId).title
-                        // console.log(titleElem)
                         photoElem.setAttribute('src', `assets/portfolio/${authorName}/${photoName}`)
                         titleElem.textContent = photoTitle
                     }
-                    if(index + 2 == portfolio.length){
+                    // if(index + 2 == portfolio.length){
+                    //     rightArrow.classList.add('hidden')
+                    // }else{
+                    //     if(rightArrow.classList.contains('hidden')){
+                    //         rightArrow.classList.remote('hidden')
+                    //     }
+                    // }
+                    if(index === portfolio.length-2){
                         rightArrow.classList.add('hidden')
-                    }else{
-                        if(rightArrow.classList.contains('hidden')){
-                            rightArrow.classList.remote('hidden')
+                    }
+                    else{
+                        if(leftArrow.classList.contains('hidden')){
+                            
+                            leftArrow.classList.remove('hidden')
                         }
                     }
                 }
             });
+            if(nextId){
+                currentId = nextId
+            }
         })
-    }
-
-    async leftArrowClick(id, authorId, authorName){
-        let leftArrow = document.querySelector('.fa-chevron-left')
-        let photoElem = document.querySelector('.lightbox__slider figure img')
-        let titleElem = document.querySelector('.lightbox__slider figure figcapture')
-        let currentId = id
-        let prevId
-        let portfolio = await this.getAllMediaOfCurrentAuthor(authorId)
 
         leftArrow.addEventListener('click', async function(){
+                nextId = currentId
 
-            if(prevId){
-                currentId = prevId
-            }
-            // console.log(portfolio.length)
+           
+           
+
             portfolio.forEach(function(item, index) {
-                
                 if(item.id === currentId){
-                    // console.log("Current: " + item.id);
                     if (index > 0) {
-                        // console.log("Previous: " + portfolio[index - 1].id);
-                         prevId = portfolio[index - 1].id
+                        prevId = portfolio[index - 1].id
                         let photoName = portfolio.find(media => media.id === prevId).image
                         let photoTitle = portfolio.find(media => media.id === prevId).title
-                        // console.log(titleElem)
                         photoElem.setAttribute('src', `assets/portfolio/${authorName}/${photoName}`)
                         titleElem.textContent = photoTitle
                     }
                     if (index < portfolio.length - 1) {
-                        // console.log("Next: " + portfolio[index + 1].id);
-                       
                     }
-                    if(index - 1 == 0){
+
+                    if(index-1 == 0){
                         leftArrow.classList.add('hidden')
                     }else{
-                        if(leftArrow.classList.contains('hidden')){
-                            leftArrow.classList.remote('hidden')
+                        if(rightArrow.classList.contains('hidden')){
+                            rightArrow.classList.remove('hidden')
                         }
                     }
                 }
             });
+            if(prevId){
+                
+                currentId = prevId
+            }
         })
-    }
+       
+    } 
+
+
 
     closeLightbox(){
         const closeBtn = document.querySelector('.lightbox__close')

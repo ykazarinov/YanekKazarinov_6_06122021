@@ -93,8 +93,8 @@ class imageConstructor extends mediaConstructor {
                     forLightBox.innerHTML = reponse[0].innerHTML
                     let authorName = reponse[1]
                     lightbox.closeLightbox()
-                    lightbox.rightArrowClick(id, photographerId, authorName)
-                    lightbox.leftArrowClick(id, photographerId, authorName)
+                    lightbox.arrowClick(id, photographerId, authorName)
+                    
                 })
                 
             }
