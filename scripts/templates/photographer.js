@@ -40,7 +40,7 @@ class photographerTemplate{
             </div>
         </section>
         <section>
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+            <button id='open-modal-form' class="contact_button">Contactez-moi</button>
         </section>
         <section>
             <img class="img_link" alt="" src="assets/photographers/${this.portrait}">

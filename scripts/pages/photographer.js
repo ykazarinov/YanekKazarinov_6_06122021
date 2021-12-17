@@ -10,6 +10,7 @@ let sorterOrderBy
 
 async function getCurrentPhotograph() {
     const { photographers } = await getPhotographers()
+    
     const currentPhotographer = await photographers.find(photographer => photographer.id == currentId)
     return currentPhotographer
 }
@@ -53,6 +54,26 @@ async function totalLikes(){
     return total
 }
 
+//contact modal
+async function makeContactModal(){
+    let buttonContact = await document.getElementById('open-modal-form')
+    
+    buttonContact.addEventListener('click', function (e){
+        
+        let myContactModal = new contactModal()
+        myContactModal.displayModal()
+
+        let close = document.querySelector('#contact_modal .modal header i')
+        close.addEventListener('click', function(e){
+            myContactModal.closeModal()
+        })
+
+        myContactModal.checkTheForm()
+     
+    })
+}
+
+
 async function init() {
     
     let total = await totalLikes()
@@ -60,6 +81,7 @@ async function init() {
     // Preparing and filling in information about the current photographer
     const currentPhotographerElem = document.querySelector('.photograph-header')
     let currentPhotographArray = await getCurrentPhotograph()
+    
     const currentPhotographer = new photographerTemplate(currentPhotographArray)
    
     let photographInfo = await currentPhotographer.getCurrentUserCardDOM(total)
@@ -94,6 +116,9 @@ async function init() {
     sorting.openCloseSelect()
     sorting.chooseSelectValue(total, MyLikesSubject)
 
+    makeContactModal()
+
+  
 
 }
 

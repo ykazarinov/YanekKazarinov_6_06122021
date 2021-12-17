@@ -19,18 +19,72 @@
       <section class='portfolio-container'><!--content--></section>
       <div class='for-lightbox'></div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
+
+
+<!-- Modal -->
+
+<!-- Success message-->
+<div class="success noDisplay">
+  <div class="success__content">
+    <span class="close--success close"></span>
+    <i class="fas fa-check-circle"></i>
+    <span>Merci ! Votre réservation a été reçue.</span>
+    <button class="btn-signup close-btn">
+      fermer
+    </button>
+  </div>
+  
+</div>
+
+<!-- Error message-->
+<div class="errorModal noDisplay">
+  <div class="errorModal__content">
+    <span class="close--errorModal close"></span>
+    <i class="fas fa-exclamation-circle"></i>
+    <span>Il y a des erreurs dans le formulaire. Données non envoyées !</span>
+    <button class="btn-signup close-btn">
+      fermer
+    </button>
+  </div>
+</div>
+
+    <div id="contact_modal" class="bground hidden">
+			<div class="content modal">
+        <span class="clear"><i class="fas fa-broom"></i></span>
+        <span class="fill"><i class="fas fa-file-signature"></i></span>
+        <span class="close"></span>
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <!-- <img src="assets/icons/close.svg" onclick="closeModal()" /> -->
+          <i class="fas fa-times"></i>
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
+				<form
+            action="photographer.html"
+           
+            method="get"
+            id='my-form'>
+            <div class="formData">
+						  <label for="first">Prénom</label>
+						  <input type="text" id="first" name="first" class='text-control'/>
+            </div>
+            
+            <div class="formData">
+              <label for="last">Nom</label>
+						  <input type="text" id="last" name="last" class='text-control'/>
+            </div>
+
+            <div class="formData">
+              <label for="email">Email</label>
+						  <input type="text" id="email" name="email" class='text-control' />
+            </div>
+            
+            <div class="formData">
+              <label for='message'>Votre message</label>
+						  <textarea id='message' name = 'message'  class='text-control'></textarea>
+            </div>
+					
+          <!-- <button class="contact_button">Envoyer</button> -->
+          <input class="contact_button btn-submit button" type="submit" value="C'est parti" />
 				</form>
 			</div>
 		</div>
