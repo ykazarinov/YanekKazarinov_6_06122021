@@ -79,22 +79,16 @@ class imageConstructor extends mediaConstructor {
     }
 
     openLightBox(id, photographerId, title, image){
-        this.figure.addEventListener('click', async function(e) {
-            
-            if(e.target.parentElement.parentElement.id === this.id){
+
+        let myOpen = async function(e){
+            if(e.target.parentElement.id === this.id){
                 const lightbox = new lightBox(id)
-              
-            
                 let forLightBox = document.querySelector('.for-lightbox')
-              
                 let content = await lightbox.getLightBox(id, photographerId, title, image)
                 .then(reponse => {
-                    
                     forLightBox.innerHTML = reponse[0].innerHTML
                     let authorName = reponse[1]
-
                     const closeBtn = document.querySelector('.lightbox__close')
-                    
                     closeBtn.addEventListener('click', function(e){
                         lightbox.closeLightbox()
                     })
@@ -104,18 +98,16 @@ class imageConstructor extends mediaConstructor {
                         }
                     })
                     lightbox.arrowClick(id, photographerId, authorName)
-                    
                 })
-                
             }
             else{
                 console.log('e.target.id != this.id')
-
             }
-            
+        }
+        let figureLink = this.figure.querySelector('a img')
+        figureLink.addEventListener('click', myOpen)
+        figureLink.addEventListener('keypress', myOpen)
 
-            // return lightbox.getLightBox()
-        })
 
        
     }
@@ -129,17 +121,17 @@ class imageConstructor extends mediaConstructor {
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
         <a href="#">
-            <img alt="" src="assets/portfolio/${PhotographName}/${this.image}">
+            <img alt="${this.title}"  tabindex="9" src="assets/portfolio/${PhotographName}/${this.image}">
             <span class='date'>${this.date}</span>
         </a>
         <figcaption>
-            <div class='media-name' title='${this.title}'>
+            <div class='media-name' title='${this.title}' tabindex="9">
                 ${this.title}
             </div>
-            <div class='media-likes'>
+            <div class='media-likes' tabindex="9">
                 <span class='media-likes__count'> ${this.likes}</span>
             
-                <i class="far fa-heart like-btn"></i>
+                <i class="far fa-heart like-btn" aria-label='likes'></i>
             
             </div>
         </figcaption>
@@ -183,7 +175,7 @@ class videoConstructor extends mediaConstructor {
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
         <a href="#">
-            <video alt='${this.video.split('_').join(' ').split('.')[0]}' controls>
+            <video alt='${this.video.split('_').join(' ').split('.')[0]}' controls  tabindex="9">
                 <source src="assets/portfolio/${PhotographName}/${this.video}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -191,11 +183,11 @@ class videoConstructor extends mediaConstructor {
             <span class='date'>${this.date}</span>
         </a>
         <figcaption>
-            <div class='media-name' title='${this.video.split('_').join(' ').split('.')[0]}'>
+            <div class='media-name' title='${this.video.split('_').join(' ').split('.')[0]}'  tabindex="9">
                 ${this.video.split('_').join(' ').split('.')[0]}
             </div>
             <div class='media-likes'>
-                <span class='media-likes__count'> ${this.likes}</span>
+                <span class='media-likes__count'  tabindex="9"> ${this.likes}</span>
             
                 <i class="far fa-heart like-btn"></i>
             

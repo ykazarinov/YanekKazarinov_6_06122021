@@ -50,7 +50,14 @@ h1 {
   align-items: center;
   flex-direction: column;
 }
-.photographer_section article h2 {
+.photographer_section article span a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.photographer_section article span a h2 {
   color: #D3573C;
   font-size: 36px;
   font-style: normal;
@@ -60,17 +67,11 @@ h1 {
   text-align: center;
   margin-bottom: 0;
 }
-.photographer_section article h2 a {
-  color: #D3573C;
-  text-decoration: none;
-}
-.photographer_section article a {
+.photographer_section article span a img {
   border-radius: 100px;
   overflow: hidden;
   height: 200px;
   width: 200px;
-}
-.photographer_section article a img {
   height: 200px;
   width: 200px;
   object-fit: cover;

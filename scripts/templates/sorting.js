@@ -34,23 +34,30 @@ class sortingTemplate{
 
         const arrow = await document.querySelector('.sorting-arrow')
 
-        sorterTitle.addEventListener('click', function(e) {
+        let openSelect = function(){
             sortingOptions.classList.contains('hidden') ? sortingOptions.classList.remove('hidden') : sortingOptions.classList.add('hidden')
+            
             if(sorting.classList.contains('sorting--closed')){
+                console.log('1')
                 sorting.classList.remove('sorting--closed')
                 sorting.classList.add('sorting--opened')
 
                 arrow.classList.remove('fa-chevron-down')
                 arrow.classList.add('fa-chevron-up')
             } else{
+                console.log('2')
                 sorting.classList.remove('sorting--opened')
                 sorting.classList.add('sorting--closed')
 
                 arrow.classList.add('fa-chevron-down')
                 arrow.classList.remove('fa-chevron-up')
             }
-            
-        })
+        }
+
+        sorterTitle.addEventListener('click', openSelect)
+        sorterTitle.addEventListener('keypress', openSelect)
+
+
     }
 
 
@@ -97,9 +104,8 @@ class sortingTemplate{
 
     //choosing value in select-sorting
     chooseSelectValue(total, LikesSubject){
+        
        
-        // console.log(LikesSubject)
-
         document.addEventListener('click',e => {
             e.preventDefault()
             if(e.target.classList.contains('sorting__options__value')){
@@ -120,24 +126,49 @@ class sortingTemplate{
                 
             }
         })
+
+        document.addEventListener('keypress', e => {
+            e.preventDefault()
+            if(e.key === ' ' || e.key === 'Enter'){
+                if(e.target.classList.contains('sorting__options__value')){
+                    const currentElem = document.querySelector('.current-value__span')
+                    const oldTextValue = currentElem.textContent
+                    const newTextValue = e.target.textContent
+
+                    e.target.textContent = oldTextValue
+                    e.target.setAttribute('value', oldTextValue)
+
+                    currentElem.textContent = newTextValue
+                    currentElem.setAttribute('value', newTextValue)
+
+                    // console.log(currentElem.getAttribute('value'))
+                    document.querySelector('.total-likes__count').innerHTML = total
+                    this.sorterMedias(currentElem.getAttribute('value'), LikesSubject)
+
+                    
+                }
+            
+            }
+
+        })
     }
 
     getSortingDOM(){
 
         // this.selectContainer.classList.add('select-container')
         let content = `
-            <label for="sorting">Trier par</label>
+            <label for="sorting" tabindex="7">Trier par</label>
 
 
-            <ul id='sorting' class='sorting sorting--closed'>
-                <li class='current-value'> 
+            <ul id='sorting' class='sorting sorting--closed' >
+                <li class='current-value' tabindex="8" role='listbox'>  
                     <i class="sorting-arrow fas fa-chevron-down"></i>
-                    <span class='current-value__span' value='${this.sortingValues[0]}'>${this.sortingValues[0]}</span>
+                    <span class='current-value__span selected' role="button"  aria-selected aria-haspopup='listbox' aria-expanded value='${this.sortingValues[0]}'>${this.sortingValues[0]}</span>
                     
 
                     <ul class='sorting__options hidden'>
-                        <li class='sorting__options__value' value='${this.sortingValues[1]}'>${this.sortingValues[1]}</li>
-                        <li class='sorting__options__value' value='${this.sortingValues[2]}'>${this.sortingValues[2]}</li>
+                        <li role = "listbox" aria-activedescendant  tabindex="8" class='sorting__options__value' value='${this.sortingValues[1]}'>${this.sortingValues[1]}</li>
+                        <li role = "listbox" aria-activedescendant  tabindex="8" class='sorting__options__value' value='${this.sortingValues[2]}'>${this.sortingValues[2]}</li>
                     </ul>
                 </li>
                

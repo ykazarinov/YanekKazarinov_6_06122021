@@ -1,9 +1,11 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
 // let currentId = localStorage['id']
-const urlSearchParams = new URLSearchParams(window.location.search)
-const params = Object.fromEntries(urlSearchParams.entries());
-let currentId = params.id
+// const urlSearchParams = new URLSearchParams(window.location.search)
+// const params = Object.fromEntries(urlSearchParams.entries());
+// let currentId = params.id
+
+let currentId = window.location.search.split("id=")[1];
 
 let sorterOrderBy
 
@@ -55,22 +57,25 @@ async function totalLikes(){
 }
 
 //contact modal
-async function makeContactModal(){
+async function makeContactModal(currentAuthotName){
+
+
     let buttonContact = await document.getElementById('open-modal-form')
-    
-    buttonContact.addEventListener('click', function (e){
+    let openModal = function(){
         
-        let myContactModal = new contactModal()
-        myContactModal.displayModal()
+        let myContactModal = new contactModal(currentAuthotName)
+            myContactModal.displayModal()
 
-        let close = document.querySelector('#contact_modal .modal header i')
-        close.addEventListener('click', function(e){
-            myContactModal.closeModal()
-        })
+            let close = document.querySelector('#contact_modal .modal header i')
+            close.addEventListener('click', function(e){
+                myContactModal.closeModal()
+            })
 
-        myContactModal.checkTheForm()
-     
-    })
+            myContactModal.checkTheForm()
+    }
+
+     buttonContact.addEventListener('keypress',  openModal)
+     buttonContact.addEventListener('click',  openModal)
 }
 
 
@@ -116,7 +121,9 @@ async function init() {
     sorting.openCloseSelect()
     sorting.chooseSelectValue(total, MyLikesSubject)
 
-    makeContactModal()
+    let authorName = await getCurrentPhotograph()
+    
+    makeContactModal(authorName.name)
 
   
 

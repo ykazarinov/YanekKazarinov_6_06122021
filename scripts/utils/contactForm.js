@@ -18,12 +18,15 @@ class field{
 
 
 class contactModal{
-    constructor(){
+    constructor(currentAuthotName){
         this.modal = document.querySelector('#contact_modal')
+        this.modalTitle = document.querySelector('.modal-title')
+        this.currentAuthotName = currentAuthotName
         
     }
     displayModal() {
         this.modal.classList.remove('hidden');
+        this.modalTitle.innerHTML = 'Contactez-moi<br>' + this.currentAuthotName
          
     }
     closeModal() {
