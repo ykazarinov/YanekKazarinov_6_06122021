@@ -92,7 +92,17 @@ class imageConstructor extends mediaConstructor {
                     
                     forLightBox.innerHTML = reponse[0].innerHTML
                     let authorName = reponse[1]
-                    lightbox.closeLightbox()
+
+                    const closeBtn = document.querySelector('.lightbox__close')
+                    
+                    closeBtn.addEventListener('click', function(e){
+                        lightbox.closeLightbox()
+                    })
+                    document.addEventListener("keyup", (key) => {
+                        if(key.code == "Escape"){
+                            lightbox.closeLightbox()
+                        }
+                    })
                     lightbox.arrowClick(id, photographerId, authorName)
                     
                 })

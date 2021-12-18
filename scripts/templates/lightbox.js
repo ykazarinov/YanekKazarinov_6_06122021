@@ -41,6 +41,13 @@ class lightBox extends mediaConstructor{
         
     }
 
+
+    closeLightbox(){
+        const lightBox = document.querySelector('.for-lightbox')
+        lightBox.innerHTML = ''
+    }
+
+
     async arrowClick(id, authorId, authorName){
         let rightArrow = document.querySelector('.fa-chevron-right')
         let leftArrow = document.querySelector('.fa-chevron-left')
@@ -89,10 +96,8 @@ class lightBox extends mediaConstructor{
             }
         }
 
-
-        rightArrow.addEventListener('click', async function(){
+        function rightClick(){
             prevId = currentId
-
             portfolio.forEach(function(item, index) {
                 if(item.id === currentId){
                     if (index < portfolio.length - 1) {
@@ -113,9 +118,9 @@ class lightBox extends mediaConstructor{
             if(nextId){
                 currentId = nextId
             }
-        })
+        }
 
-        leftArrow.addEventListener('click', async function(){
+        function leftClick(){
             nextId = currentId
             portfolio.forEach(function(item, index) {
                 if(item.id === currentId){
@@ -135,19 +140,38 @@ class lightBox extends mediaConstructor{
             if(prevId){
                 currentId = prevId
             }
+        }
+
+        function keysDown(){
+        document.addEventListener("keyup", (key) => {
+        
+            if(key.code == "ArrowLeft" ){
+                leftClick()
+            
+            }else if (key.code == "ArrowRight"){
+                rightClick()
+
+            }
+
+      })
+    }
+
+        keysDown()
+
+        rightArrow.addEventListener('click', async function(){
+            rightClick()
+
+        })
+
+        leftArrow.addEventListener('click', async function(){
+            leftClick()
         })
        
     } 
 
 
 
-    closeLightbox(){
-        const closeBtn = document.querySelector('.lightbox__close')
-        const lightBox = document.querySelector('.for-lightbox')
-        closeBtn.addEventListener('click', function(e){
-            lightBox.innerHTML = ''
-        })
-    }
+   
 
     async getLightBox(id, photographerId, title, image){
         let result = this.getCurrentPhotographName(photographerId)

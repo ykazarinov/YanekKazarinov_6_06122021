@@ -10,8 +10,18 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
+
+
+    <form method="post" onsubmit="alert('submit!');return false">
+      Первый пример: нажмите Enter: <input type="text" value="Текст"><br>
+      Второй пример: нажмите на кнопку "Отправить": <input type="submit" value="Отправить">
+    </form>
+
+
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+      <a href="index.html">
+        <img alt="Logo du site" src="assets/images/logo.png" class="logo" />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header"><!--content--></div>
@@ -19,6 +29,7 @@
       <section class='portfolio-container'><!--content--></section>
       <div class='for-lightbox'></div>
     </main>
+
 
 
 <!-- Modal -->
@@ -41,7 +52,7 @@
   <div class="errorModal__content">
     <span class="close--errorModal close"></span>
     <i class="fas fa-exclamation-circle"></i>
-    <span>Il y a des erreurs dans le formulaire. Données non envoyées !</span>
+    <span>Il y a des erreurs dans le formulaire. Données non envoyées!</span>
     <button class="btn-signup close-btn">
       fermer
     </button>
@@ -58,11 +69,9 @@
           <!-- <img src="assets/icons/close.svg" onclick="closeModal()" /> -->
           <i class="fas fa-times"></i>
         </header>
-				<form
-            action="photographer.html"
-           
-            method="get"
-            id='my-form'>
+				<form method='post' action="index.html" name="reserve">
+
+          
             <div class="formData">
 						  <label for="first">Prénom</label>
 						  <input type="text" id="first" name="first" class='text-control'/>
