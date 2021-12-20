@@ -60,40 +60,43 @@
 </div>
 
     <div id="contact_modal" class="bground hidden">
-			<div class="content modal">
-        <span class="clear"><i class="fas fa-broom"></i></span>
-        <span class="fill"><i class="fas fa-file-signature"></i></span>
-        <span class="close"></span>
+			<div autofocus class="content modal" tabindex='1' aria-labelledby="contact-title">
+        
 				<header>
-          <h2 class='modal-title'>Contactez-moi</h2>
+          <h2 id="contact-title" aria-label="Contact me" tabindex='2' class='modal-title'>Contactez-moi</h2>
+          <div class='dashboard'>
+            <span class="clear"><i class="fas fa-broom"></i></span>
+            <span class="fill"><i class="fas fa-file-signature"></i></span>
+            <span aria-label='Close contact form' class="close" tabindex='12'><i class="fas fa-times"></i></span>
+        </div>
           <!-- <img src="assets/icons/close.svg" onclick="closeModal()" /> -->
-          <i class="fas fa-times"></i>
+          
         </header>
 				<form method='post' action="index.html" name="reserve">
 
           
             <div class="formData">
-						  <label for="first">Prénom</label>
-						  <input type="text" id="first" name="first" class='text-control'/>
+						  <label id='first-name' aria-label='First name' for="first"  tabindex='3'>Prénom</label>
+						  <input aria-labelledby='first-name' tabindex='4' type="text" id="first" name="first" class='text-control'/>
             </div>
             
             <div class="formData">
-              <label for="last">Nom</label>
-						  <input type="text" id="last" name="last" class='text-control'/>
+              <label id='last-name' aria-label='Last name' for="last"  tabindex='5'>Nom</label>
+						  <input  aria-labelledby='last-name' tabindex='6' type="text" id="last" name="last" class='text-control'/>
             </div>
 
             <div class="formData">
-              <label for="email">Email</label>
-						  <input type="text" id="email" name="email" class='text-control' />
+              <label id='email' aria-label='Email' for="email"  tabindex='7'>Email</label>
+						  <input  aria-labelledby='email' tabindex='8' type="text" id="email" name="email" class='text-control' />
             </div>
             
             <div class="formData">
-              <label for='message'>Votre message</label>
-						  <textarea id='message' name = 'message'  class='text-control'></textarea>
+              <label  id='message' aria-label='Your message' tabindex='9' for='message'>Votre message</label>
+						  <textarea  aria-labelledby='message' tabindex='10' id='message' name = 'message'  class='text-control'></textarea>
             </div>
 					
           <!-- <button class="contact_button">Envoyer</button> -->
-          <input class="contact_button btn-submit button" type="submit" value="C'est parti" />
+          <input aria-label='Send' tabindex='11' class="contact_button btn-submit button" type="submit" value="Envoyer" />
 				</form>
 			</div>
 		</div>
@@ -110,7 +113,10 @@
     <script src="scripts/proxy/ProxyRatingSorter.js"></script>
 
     <script src="scripts/templates/sorting.js"></script>
+    
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/tabindex.js"></script>
+
     <script src="scripts/pages/all.js"></script>
     <script src="scripts/pages/photographer.js"></script>
 

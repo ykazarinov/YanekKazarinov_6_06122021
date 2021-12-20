@@ -22,15 +22,19 @@ class contactModal{
         this.modal = document.querySelector('#contact_modal')
         this.modalTitle = document.querySelector('.modal-title')
         this.currentAuthotName = currentAuthotName
+
+        this.tabIndexForModal = new tabIndex()
         
     }
     displayModal() {
         this.modal.classList.remove('hidden');
         this.modalTitle.innerHTML = 'Contactez-moi<br>' + this.currentAuthotName
+        this.tabIndexForModal.deleteTabindex()
          
     }
     closeModal() {
         this.modal.classList.add('hidden')
+        this.tabIndexForModal.setTabIndex()
     }
 
     checkTheForm(){
@@ -55,6 +59,7 @@ class contactModal{
         
 
         document.querySelector('.fill').addEventListener('click', function(e){
+        
         testDataArr.forEach(i => {
             switch (i.type){ 
             case 'input' : 

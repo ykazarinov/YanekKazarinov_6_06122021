@@ -28,24 +28,27 @@ class sortingTemplate{
 
     // select-sorting
     async openCloseSelect() {
-        const sorterTitle = await document.querySelector('.current-value')
-        const sortingOptions = await document.querySelector('.sorting__options')
-        const sorting = await document.querySelector('.sorting')
+        const sorterTitle = await document.querySelector('.current-value')  // element with current value
+        const sortingOptions = await document.querySelector('.sorting__options') // group of elements which we choose
+        const sorting = await document.querySelector('.sorting') // total element
 
         const arrow = await document.querySelector('.sorting-arrow')
 
+        const sortingOptionsValue = await document.querySelectorAll('.sorting__options__value')
+        const sortingOptionsValueLast = await document.querySelector('.sorting__options__value:last-child')
+
         let openSelect = function(){
             sortingOptions.classList.contains('hidden') ? sortingOptions.classList.remove('hidden') : sortingOptions.classList.add('hidden')
-            
+
             if(sorting.classList.contains('sorting--closed')){
-                console.log('1')
+                 console.log('1')
                 sorting.classList.remove('sorting--closed')
                 sorting.classList.add('sorting--opened')
 
                 arrow.classList.remove('fa-chevron-down')
                 arrow.classList.add('fa-chevron-up')
             } else{
-                console.log('2')
+                 console.log('2')
                 sorting.classList.remove('sorting--opened')
                 sorting.classList.add('sorting--closed')
 
@@ -54,12 +57,21 @@ class sortingTemplate{
             }
         }
 
-        sorterTitle.addEventListener('click', openSelect)
         sorterTitle.addEventListener('keypress', openSelect)
-
-
+  
+        sorterTitle.addEventListener('click', openSelect)
+      
+        sortingOptionsValueLast.addEventListener('blur', function(){
+            sortingOptions.classList.add('hidden')
+            sorting.classList.remove('sorting--opened')
+            sorting.classList.add('sorting--closed')
+            arrow.classList.add('fa-chevron-down')
+            arrow.classList.remove('fa-chevron-up')
+        })
+       
     }
 
+   
 
 
 
@@ -67,7 +79,7 @@ class sortingTemplate{
         this.clearPortfolioContainer() 
 
         const MyLikesSubject = LikesSubject
-        console.log(MyLikesSubject)
+        // console.log(MyLikesSubject)
         MyLikesSubject.unsubscribe(LikesCounter)
 
         const MyLikesCounter = new LikesCounter()
@@ -103,8 +115,10 @@ class sortingTemplate{
 
 
     //choosing value in select-sorting
-    chooseSelectValue(total, LikesSubject){
-        
+    async chooseSelectValue(total, LikesSubject){
+        const sortingOptions = await document.querySelector('.sorting__options') // group of elements which we choose
+        const sorting = await document.querySelector('.sorting') // total element
+        const arrow = await document.querySelector('.sorting-arrow')
        
         document.addEventListener('click',e => {
             e.preventDefault()
@@ -123,11 +137,13 @@ class sortingTemplate{
                 document.querySelector('.total-likes__count').innerHTML = total
                 this.sorterMedias(currentElem.getAttribute('value'), LikesSubject)
 
+
+
                 
             }
         })
 
-        document.addEventListener('keypress', e => {
+        document.querySelector('#sorting').addEventListener('keypress', e => {
             e.preventDefault()
             if(e.key === ' ' || e.key === 'Enter'){
                 if(e.target.classList.contains('sorting__options__value')){

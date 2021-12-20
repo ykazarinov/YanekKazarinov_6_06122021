@@ -154,7 +154,7 @@ h1 {
            }
             h1{
               
-                font-size: 64px;
+                font-size: 3rem;
                 font-style: normal;
                 font-weight: 400;
                 line-height: 83px;
@@ -162,6 +162,7 @@ h1 {
                 text-align: left;
                 color: $h1color;
                 margin-left: 34px;
+                margin-right: 0;
                 margin-bottom: 0;
                 
 
@@ -584,6 +585,7 @@ h1 {
     background-color: $place-color;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
 #contact_modal{
@@ -610,18 +612,16 @@ h1 {
         
         header{
             justify-content: space-between;
+            align-items: flex-start;
             width: 100%;
             h2 {
-                font-size: 3rem;
+                font-size: 2rem;
                 font-weight: normal;
-                text-align: center;
+                
                 margin: 0;
+                flex-grow: 2;
             }
-            i{
-                cursor: pointer;
-                font-size: 3rem;
-                color: #fff;
-            }
+           
         }
     
 
@@ -643,7 +643,7 @@ h1 {
                 flex-direction: column;
                 width: 100%;
                 align-items: self-start;
-                margin-bottom: 26px;
+                margin-bottom: 1rem;
             }
             
             input {
@@ -664,11 +664,42 @@ h1 {
                 padding-right: .5rem;
                 padding-left: .5rem;
             }
+            .contact_button {
+              
+                width: unset;
+            }
         }
 
     }
 
 }
 
+@mixin dashboard{
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer
+}
 
+.dashboard{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+   
+    .clear i{
+        @include dashboard
+    }
+    .fill i{
+        @include dashboard
+    }
+    .close i{
+        @include dashboard
+    }
+}
 
+.formData{
+    .error{
+        color: $place-color;
+        font-weight: bold;
+    }
+}

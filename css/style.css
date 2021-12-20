@@ -125,7 +125,7 @@ h1 {
   align-items: flex-start;
 }
 .photograph-header__info section h1 {
-  font-size: 64px;
+  font-size: 3rem;
   font-style: normal;
   font-weight: 400;
   line-height: 83px;
@@ -133,6 +133,7 @@ h1 {
   text-align: left;
   color: #D3573C;
   margin-left: 34px;
+  margin-right: 0;
   margin-bottom: 0;
 }
 .photograph-header__info section img {
@@ -509,18 +510,14 @@ h1 {
 }
 #contact_modal .modal header {
   justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
 }
 #contact_modal .modal header h2 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: normal;
-  text-align: center;
   margin: 0;
-}
-#contact_modal .modal header i {
-  cursor: pointer;
-  font-size: 3rem;
-  color: #fff;
+  flex-grow: 2;
 }
 #contact_modal .modal form {
   display: flex;
@@ -538,7 +535,7 @@ h1 {
   flex-direction: column;
   width: 100%;
   align-items: self-start;
-  margin-bottom: 26px;
+  margin-bottom: 1rem;
 }
 #contact_modal .modal form input {
   width: calc(100% - 1rem);
@@ -557,6 +554,38 @@ h1 {
   font-size: 1.2rem;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
+}
+#contact_modal .modal form .contact_button {
+  width: unset;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.dashboard .clear i {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 10px;
+  cursor: pointer;
+}
+.dashboard .fill i {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 10px;
+  cursor: pointer;
+}
+.dashboard .close i {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.formData .error {
+  color: #901C1C;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=style.css.map */
