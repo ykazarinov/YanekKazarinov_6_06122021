@@ -11,7 +11,8 @@ class photographerTemplate{
 
      get price(){ return this._price}
 
-    getUserCardDOM(){
+     // for index page
+    getUserCardDOM(){ 
         const article = document.createElement( 'article' )
         article.id = this.id
         let content = `
@@ -32,12 +33,13 @@ class photographerTemplate{
     return (this.price, article);
     }
 
+    //for photographer page
     getCurrentUserCardDOM(totalLikes){
         const article = document.createElement( 'article' )
         article.classList.add('photograph-header__info')
         let content = `
         <section>
-            <h1  tabindex="2">${this.name}</h1>
+            <h1 class='author-page-title' tabindex="2">${this.name}</h1>
             <div class="infoPlus"  tabindex="3">
                 <div class="place">${this.city}, ${this.country}</div>
                 <div class="tagline">${this.tagline}</div>

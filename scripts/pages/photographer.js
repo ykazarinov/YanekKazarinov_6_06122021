@@ -10,6 +10,8 @@ let currentId = window.location.search.split("id=")[1];
 let sorterOrderBy
 
 
+
+
 async function getCurrentPhotograph() {
     const { photographers } = await getPhotographers()
     

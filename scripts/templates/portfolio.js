@@ -82,21 +82,36 @@ class imageConstructor extends mediaConstructor {
 
         let myOpen = async function(e){
             if(e.target.parentElement.id === this.id){
+                e.target.blur()
+                document.activeElement.blur()
                 const lightbox = new lightBox(id)
+                // lightbox.deleteTabindex()
                 let forLightBox = document.querySelector('.for-lightbox')
                 let content = await lightbox.getLightBox(id, photographerId, title, image)
                 .then(reponse => {
                     forLightBox.innerHTML = reponse[0].innerHTML
                     let authorName = reponse[1]
                     const closeBtn = document.querySelector('.lightbox__close')
+                    
                     closeBtn.addEventListener('click', function(e){
                         lightbox.closeLightbox()
+                        e.target.focus()
                     })
+                    
                     document.addEventListener("keyup", (key) => {
                         if(key.code == "Escape"){
                             lightbox.closeLightbox()
+                            e.target.focus()
                         }
                     })
+                    
+                    closeBtn.addEventListener('keypress', function(key){
+                        if(key.code == 'Enter'){
+                            lightbox.closeLightbox()
+                            e.target.focus()
+                        }
+                    })
+
                     lightbox.arrowClick(id, photographerId, authorName)
                 })
             }
@@ -120,8 +135,8 @@ class imageConstructor extends mediaConstructor {
         this.figure.id = this.id
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
-        <a href="#">
-            <img alt="${this.title}"  tabindex="9" src="assets/portfolio/${PhotographName}/${this.image}">
+        <a href="#" tabindex='-1'>
+            <img alt="${this.title}" class='portfolio_img' tabindex="9" src="assets/portfolio/${PhotographName}/${this.image}">
             <span class='date'>${this.date}</span>
         </a>
         <figcaption>
@@ -174,20 +189,20 @@ class videoConstructor extends mediaConstructor {
         this.figure.id = this.id
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
-        <a href="#">
+        
             <video alt='${this.video.split('_').join(' ').split('.')[0]}' controls  tabindex="9">
                 <source src="assets/portfolio/${PhotographName}/${this.video}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
             <span class='date'>${this.date}</span>
-        </a>
+        
         <figcaption>
             <div class='media-name' title='${this.video.split('_').join(' ').split('.')[0]}'  tabindex="9">
                 ${this.video.split('_').join(' ').split('.')[0]}
             </div>
-            <div class='media-likes'>
-                <span class='media-likes__count'  tabindex="9"> ${this.likes}</span>
+            <div class='media-likes' tabindex="9">
+                <span class='media-likes__count' > ${this.likes}</span>
             
                 <i class="far fa-heart like-btn"></i>
             

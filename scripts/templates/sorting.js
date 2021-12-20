@@ -157,18 +157,18 @@ class sortingTemplate{
 
         // this.selectContainer.classList.add('select-container')
         let content = `
-            <label for="sorting" tabindex="7">Trier par</label>
+            <label for="sorting" tabindex="7" class='sorting_label'>Trier par</label>
 
 
             <ul id='sorting' class='sorting sorting--closed' >
                 <li class='current-value' tabindex="8" role='listbox'>  
                     <i class="sorting-arrow fas fa-chevron-down"></i>
-                    <span class='current-value__span selected' role="button"  aria-selected aria-haspopup='listbox' aria-expanded value='${this.sortingValues[0]}'>${this.sortingValues[0]}</span>
+                    <span class='current-value__span selected' role="button"  aria-selected aria-haspopup='listbox' aria-expanded  title='${this.sortingValues[0]}' value='${this.sortingValues[0]}'>${this.sortingValues[0]}</span>
                     
 
                     <ul class='sorting__options hidden'>
-                        <li role = "listbox" aria-activedescendant  tabindex="8" class='sorting__options__value' value='${this.sortingValues[1]}'>${this.sortingValues[1]}</li>
-                        <li role = "listbox" aria-activedescendant  tabindex="8" class='sorting__options__value' value='${this.sortingValues[2]}'>${this.sortingValues[2]}</li>
+                        <li role = "listbox" aria-activedescendant  tabindex="8" class='sorting__options__value' title='${this.sortingValues[1]}' value='${this.sortingValues[1]}'>${this.sortingValues[1]}</li>
+                        <li role = "listbox" aria-activedescendant  tabindex="8" class='sorting__options__value' title='${this.sortingValues[2]}' value='${this.sortingValues[2]}'>${this.sortingValues[2]}</li>
                     </ul>
                 </li>
                
