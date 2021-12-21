@@ -703,3 +703,166 @@ h1 {
         font-weight: bold;
     }
 }
+
+.portfolio-container{
+    margin-bottom: 3rem;
+}
+
+
+@media screen and (max-width: 767px) {
+    main {
+        padding: 0 10px;
+    }
+
+    .photograph-header{
+        height: unset;
+    }
+    .photograph-header__info{
+        flex-direction: column;
+        section{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            h1{
+                margin-left: 0;
+                text-align: center;
+                font-size: 2rem;
+                width: 100%;
+            }
+            .infoPlus{
+                margin-left: 0;
+                margin-bottom: 1rem;
+                .place{
+                    text-align: center;
+                }
+                .tagline{
+                    text-align: center;
+                }
+                
+            }
+        }
+    }
+    #open-modal-form{
+        margin-bottom: 1rem;
+    }
+    .select-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mark-container{
+        min-width: unset;
+        
+        left: 10px;
+        right: 10px;
+    }
+
+    .index-header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: unset;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .logo{
+        margin-left: 0;
+    }
+    .index-title{
+        margin-right: 0;
+    }
+
+    .photographer_section{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .photographer-header{
+        justify-content: center;
+    }
+    .author-page-title{
+        margin-top: 0;
+    }
+
+    .lightbox__container{
+        width: 100vw;
+    }
+
+    .lightbox__slider figure img, .lightbox__slider figure video{
+        max-height: unset;
+        width: 100%;
+    }
+    .lightbox__container{
+        height: unset;
+    }
+    #contact_modal .modal{
+        width: 100vw;
+    }
+    #contact_modal .modal form{
+        width: calc(100% - 4rem);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    #contact_modal .modal header{
+        flex-direction: column-reverse;
+        margin-top: 1rem;
+    }
+    .dashboard{
+        width: 100%;
+        
+    }
+
+    #contact_modal .modal header h2{
+        width: 100%;
+        text-align: center;
+    }
+    #contact_modal .modal form{
+        align-items: center;
+    }
+
+    #contact_modal .modal{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    #main{
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .portfolio-container{
+        justify-content: space-around;
+    }
+    #contact_modal .modal{
+padding-right: 0;
+padding-left: 0;
+        width: 100%;
+    }
+
+    #contact_modal .modal header{
+        width: calc(100% - 6rem);
+    }
+    #contact_modal .modal form{
+        width: calc(100% - 6rem);
+    }
+
+    .lightbox__container{
+        width: 95vw;
+    }
+    .lightbox__slider figure img, .lightbox__slider figure video{
+        max-width: 70vw;
+    }
+    .lightbox__slider figure{
+        justify-content: center;
+        align-items: center;
+    }
+}
