@@ -106,7 +106,7 @@ h1 {
         align-items: center;
         justify-content: center;
         .place{
-            font-size: 13px;
+            font-size: 1rem;
             font-style: normal;
             font-weight: 400;
             line-height: 17px;
@@ -114,17 +114,17 @@ h1 {
             color: $place-color;
         }
         .tagline{
-            font-size: 10px;
+            font-size: .8rem;
             font-style: normal;
             font-weight: 400;
-            line-height: 13px;
+            line-height: 1rem;
             letter-spacing: 0em;
         }
         .price{
-            font-size: 9px;
+            font-size: .8rem;
             font-style: normal;
             font-weight: 400;
-            line-height: 12px;
+            line-height: 1rem;
             letter-spacing: 0em;
             text-align: center;
             color: #757575;
@@ -706,7 +706,61 @@ h1 {
 
 .portfolio-container{
     margin-bottom: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
+
+//-------------------------------
+.btn-signup {
+    background: #fe142f;
+    display: block;
+    margin: 0 auto;
+    border-radius: 7px;
+    font-size: 1rem;
+    padding: 12px 82px;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+  }
+
+.success, .errorModal{
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 39, 156, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  .success__content, .errorModal__content{
+    background: #232323;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    min-height: 250px;
+  
+    z-index: 4;
+    min-height: 300px; 
+    width: 75%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    font-size: 1.5rem;
+    position: relative;
+  
+  }
+  
+  .close-btn{
+    margin-top: 20px;
+  }
 
 
 @media screen and (max-width: 767px) {

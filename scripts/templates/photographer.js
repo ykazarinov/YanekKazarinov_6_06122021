@@ -18,7 +18,7 @@ class photographerTemplate{
         let content = `
         <span>
             <a href="photographer.html?id=${article.id}" title='${this.name}'  tabindex='3'>
-                <img class="img_link" alt="" src="assets/photographers/${this.portrait}">
+                <img class="img_link" alt="${this.name}" src="assets/photographers/${this.portrait}">
             
             <h2 class="title_link">${this.name}</h2>
             </a>

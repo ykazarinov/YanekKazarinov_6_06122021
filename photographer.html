@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -12,21 +12,14 @@
   </head>
   <body>
 
-
-    <!-- <form method="post" onsubmit="alert('submit!');return false">
-      Первый пример: нажмите Enter: <input type="text" value="Текст"><br>
-      Второй пример: нажмите на кнопку "Отправить": <input type="submit" value="Отправить">
-    </form> -->
-
-
-    <header class='photographer-header'> 
+    <header role='banner' class='photographer-header'> 
       <a href="/" tabindex="1" autofocus title='Fisheye Home page'>
         <img alt="Fisheye Home page" src="assets/images/logo.png" class="logo" />
       </a>
     </header>
     <main id="main">
-      <div class="photograph-header"><!--content--></div>
-      <div class='select-container'><!--content--></div>
+      <section class="photograph-header"><!--content--></section>
+      <section class='select-container'><!--content--></section >
       <section class='portfolio-container'><!--content--></section>
       <div class='for-lightbox'></div>
     </main>
@@ -87,12 +80,12 @@
             </div>
 
             <div class="formData">
-              <label id='email' aria-label='Email' for="email"  tabindex='7'>Email</label>
+              <label id='email-label' aria-label='Email' for="email"  tabindex='7'>Email</label>
 						  <input  aria-labelledby='email' tabindex='8' type="text" id="email" name="email" class='text-control' />
             </div>
             
             <div class="formData">
-              <label  id='message' aria-label='Your message' tabindex='9' for='message'>Votre message</label>
+              <label  id='message-label' aria-label='Your message' tabindex='9' for='message'>Votre message</label>
 						  <textarea  aria-labelledby='message' tabindex='10' id='message' name = 'message'  class='text-control'></textarea>
             </div>
 					

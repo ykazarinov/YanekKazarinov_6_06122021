@@ -24,6 +24,14 @@ class contactModal{
         this.currentAuthotName = currentAuthotName
 
         this.tabIndexForModal = new tabIndex()
+
+        this.data = {
+            'FirstName' : '',
+             'LastName' : '',
+             'Email' : '',
+             'Message' : ''
+           
+        }
         
     }
     displayModal() {
@@ -32,12 +40,44 @@ class contactModal{
         this.tabIndexForModal.deleteTabindex()
          
     }
+
     closeModal() {
         this.modal.classList.add('hidden')
         this.tabIndexForModal.setTabIndex()
     }
 
+    openMessageModal(elem) {
+        elem.classList.remove('hidden')
+        
+    }
+
+    closeMessageModal(elem) {
+        elem.classList.add('hidden')
+        
+    }
+
+    clearFields(){
+        document.querySelectorAll('.text-control').forEach(el=>el.value = '');
+        
+      
+    }
+
+     // delete all errorMessages
+    deleteErrorMessages(){
+        var errorElements = document.getElementsByClassName('error');
+        while(errorElements[0]) {
+            errorElements[0].parentNode.removeChild(errorElements[0]);
+        }
+        let errorInputElements = document.getElementsByClassName('inputError');
+        while(errorInputElements[0]) {
+        errorInputElements[0].classList.remove('inputError');
+        }
+    }
+
     checkTheForm(){
+        let that = this
+        
+       
         // DOM Elements
         const modalbg = document.querySelector(".bground");
         const modalBtn = document.querySelectorAll(".modal-btn");
@@ -46,7 +86,8 @@ class contactModal{
         const errorMsg = document.querySelector('.errorModal');
 
         // ================== Remplir avec les données de test ==========================
-
+        
+        
 
         let testDataArr = [];
 
@@ -74,13 +115,10 @@ class contactModal{
 
         // ================== clear the fields ================================
 
-        function clearFields(){
-            document.querySelectorAll('.text-control').forEach(el=>el.value = '');
-          
-        }
+
         
         document.querySelector('.clear').addEventListener('click', function(e){
-            clearFields();
+            that.clearFields();
         });
 
         let fieldsArr = [];
@@ -92,17 +130,7 @@ class contactModal{
 
         
 
-        // delete all errorMessages
-        function deleteErrorMessages(){
-            var errorElements = document.getElementsByClassName('error');
-            while(errorElements[0]) {
-                errorElements[0].parentNode.removeChild(errorElements[0]);
-            }
-            let errorInputElements = document.getElementsByClassName('inputError');
-            while(errorInputElements[0]) {
-            errorInputElements[0].classList.remove('inputError');
-            }
-        }
+       
 
         // create div with red error
         const createDivWithError = (elem, errorText) => {
@@ -137,13 +165,13 @@ class contactModal{
         fieldsArr.forEach(i => {
             if(i.type === 'input'){
                 document.querySelector('input[name="'+ i.fieldName +'"]').addEventListener('change', function(e){
-                    deleteErrorMessages();
+                    that.deleteErrorMessages();
                     isValid(i);
                 });
             }
             else if(i.type === 'textarea'){
                 document.querySelector('textarea[name="'+ i.fieldName +'"]').addEventListener('change', function(e){
-                    deleteErrorMessages();
+                    that.deleteErrorMessages();
                     isValid(i);
                 });
             }
@@ -152,13 +180,19 @@ class contactModal{
 
 
 
-        console.log(document.querySelector('form'))
+        // console.log(document.querySelector('form'))
+
+        document.querySelector('form .contact_button').addEventListener('click', function(e){
+            e.preventDefault();
+            document.querySelector('form').dispatchEvent(new Event('submit'));
+        })
         
+
         //  submit form
         document.querySelector('form').addEventListener('submit', function(e){
             e.preventDefault();
-            deleteErrorMessages();
-            console.log('wefwef')
+            that.deleteErrorMessages();
+            // console.log('wefwef')
         
             let isError;
         
@@ -170,11 +204,18 @@ class contactModal{
             });
         
             if(isError){
-            openModal(errorMsg);
+            that.openMessageModal(errorMsg);
             }else{
-            closeModal(modalbg);
-            openModal(successMsg);
-            clearFields();
+            
+            console.log('First Name = ', document.querySelector('#first').value)
+            console.log('Last Name = ', document.querySelector('#last').value)
+            console.log('Email = ', document.querySelector('#email').value)
+            console.log('Message = ', document.querySelector('#message').value)
+            
+
+            that.closeMessageModal(that.modal);
+            that.openMessageModal(successMsg)
+            that.clearFields();
             }
             
         })

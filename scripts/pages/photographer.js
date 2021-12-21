@@ -69,15 +69,20 @@ async function makeContactModal(currentAuthotName){
         
         let myContactModal = new contactModal(currentAuthotName)
             myContactModal.displayModal()
+            
 
             let close = document.querySelector('.modal .close')
             close.addEventListener('click', function(e){
                 myContactModal.closeModal()
+                myContactModal.deleteErrorMessages()
+                myContactModal.clearFields()
             })
 
             close.addEventListener('keypress', function(key){
                 if(key.code == 'Enter'){
                     myContactModal.closeModal()
+                    myContactModal.deleteErrorMessages()
+                    myContactModal.clearFields()
                 }
                 
             })
@@ -85,10 +90,23 @@ async function makeContactModal(currentAuthotName){
             document.addEventListener("keyup", (key) => {
                 if(key.code == "Escape"){
                     myContactModal.closeModal()
+                    myContactModal.deleteErrorMessages()
+                    myContactModal.clearFields()
                 }
             })
 
             myContactModal.checkTheForm()
+
+
+            document.addEventListener('click', (e) => {
+                if(e.target.classList.contains('close-btn')){
+                    let successWindow = document.querySelector('.success')
+                    let errorWindow = document.querySelector('.errorModal')
+                    myContactModal.closeMessageModal(successWindow)
+                    myContactModal.closeMessageModal(errorWindow)
+                }
+                
+            })
     }
 
      buttonContact.addEventListener('keypress',  openModal)
