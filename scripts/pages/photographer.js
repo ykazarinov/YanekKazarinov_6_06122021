@@ -10,12 +10,8 @@ let currentId = params.id
 
 let sorterOrderBy
 
-
-
-
 async function getCurrentPhotograph() {
     const { photographers } = await getPhotographers()
-    
     const currentPhotographer = await photographers.find(photographer => photographer.id == currentId)
     return currentPhotographer
 }
@@ -28,34 +24,22 @@ async function getPortfolio(){
 
 async function displayPortfolio(media, MyLikesSubject) { 
 
-
-
-
- 
     let portfolioContainer = document.querySelector('.portfolio-container')
-
     media.forEach((media) => {
-        
         const mediaModel = new mediaFactory(media, MyLikesSubject);
-        
         const mediaCardDOM = mediaModel.getMediaCardDOM()
         .then(response => {
             portfolioContainer.appendChild(response)
         })
-        
-           
     });
 }
 
 async function totalLikes(){
     let total = 0
     const arrCounts = await getPortfolio()
-    
     arrCounts.forEach( (media) =>{
        total = total + media.likes
     })
-
-
     return total
 }
 
@@ -98,15 +82,8 @@ async function makeContactModal(currentAuthotName){
             myContactModal.checkTheForm()
 
 
-            document.addEventListener('click', (e) => {
-                if(e.target.classList.contains('close-btn')){
-                    let successWindow = document.querySelector('.success')
-                    let errorWindow = document.querySelector('.errorModal')
-                    myContactModal.closeMessageModal(successWindow)
-                    myContactModal.closeMessageModal(errorWindow)
-                }
-                
-            })
+
+           
     }
 
      buttonContact.addEventListener('keypress',  openModal)
@@ -128,8 +105,6 @@ async function init() {
     currentPhotographerElem.innerHTML = photographInfo.outerHTML
 
     const selectContainer = document.querySelector('.select-container')
-
-   
 
     // Preparing and filling portfolio of current photographer
 
@@ -159,8 +134,6 @@ async function init() {
     let authorName = await getCurrentPhotograph()
     
     makeContactModal(authorName.name)
-
-  
 
 }
 

@@ -121,8 +121,9 @@ class sortingTemplate{
         const arrow = await document.querySelector('.sorting-arrow')
        
         document.addEventListener('click',e => {
-            e.preventDefault()
+            
             if(e.target.classList.contains('sorting__options__value')){
+                e.preventDefault()
                 const currentElem = document.querySelector('.current-value__span')
                 const oldTextValue = currentElem.textContent
                 const newTextValue = e.target.textContent
@@ -175,8 +176,6 @@ class sortingTemplate{
         let content = `
         
             <label for="sorting" tabindex="7" class='sorting_label'>Trier par</label>
-
-
             <ul id='sorting' class='sorting sorting--closed' >
                 <li class='current-value' tabindex="8" role='listbox'>  
                     <i class="sorting-arrow fas fa-chevron-down"></i>

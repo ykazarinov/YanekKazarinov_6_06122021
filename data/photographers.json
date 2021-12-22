@@ -64,6 +64,7 @@
 			"likes": 62,
 			"date": "2011-12-08",
 			"price": 55
+			
 		},
 		{
 			"id": 8520927,
@@ -116,7 +117,8 @@
 			"video": "Art_Wooden_Horse_Sculpture.mp4",
 			"likes": 24,
 			"date": "2011-12-08",
-			"price": 100
+			"price": 100,
+			"alt": "Alt text for this video"
 		  },
 		{
 			"id": 7502053,
@@ -224,7 +226,8 @@
 			"video": "Animals_Puppiness.mp4",
 			"likes": 52,
 			"date": "2016-06-12",
-			"price": 70
+			"price": 70,
+			"alt": "Alt text for this video"
 		},
 		{
 			"id": 394583434,
@@ -232,7 +235,8 @@
 			"video": "Travel_Rock_Mountains.mp4",
 			"likes": 23,
 			"date": "2017-03-18",
-			"price": 45
+			"price": 45,
+			"alt": "Alt text for this video"
 		},
 		{
 			"id": 343423425,
@@ -385,7 +389,8 @@
 			"video": "Animals_Wild_Horses_in_the_mountains.mp4",
 			"likes": 142,
 			"date": "2019-08-23",
-			"price": 60
+			"price": 60,
+			"alt": "Alt text for this video"
 		  },
 		{
 			"id": 95234343,
@@ -475,7 +480,8 @@
 			"video": "Architecture_coverr_circle_empty_highway_in_buenos_aires_587740985637.mp4",
 			"likes": 57,
 			"date": "2020-01-20",
-			"price": 65
+			"price": 65,
+			"alt": "Alt text for this video"
 		  },
 		{
 			"id": 3523523534,
@@ -492,7 +498,8 @@
 			"video": "Sport_Tricks_in_the_air.mp4",
 			"likes": 150,
 			"date": "2018-02-30",
-			"price": 70
+			"price": 70,
+			"alt": "Alt text for this video"
 		  },
 		{
 			"id": 235234343,

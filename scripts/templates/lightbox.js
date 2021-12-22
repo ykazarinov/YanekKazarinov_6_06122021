@@ -1,16 +1,10 @@
 class lightBox extends mediaConstructor{
     constructor(id){
         super(id)
-        
         this.lightBox = document.createElement( 'div' )
-        
         this.ProxyRatingSorter = new ProxyRatingSorter()
-
         this.tabIndexForLightbox = new tabIndex()
-    
-        
     }
-
     getCharsBefore(str, chr) {
         return super.getCharsBefore(str, chr)
     }
@@ -94,7 +88,8 @@ class lightBox extends mediaConstructor{
             }else if(portfolio.find(media => media.id === secondId).video){
                 let videoName = portfolio.find(media => media.id === secondId).video
                 let videoTitle = videoName.split('_').join(' ').split('.')[0]
-                mediaElem.innerHTML = `<video tabindex='2' alt='${videoTitle}' controls>
+                let videoAlt = portfolio.find(media => media.id === secondId).alt
+                mediaElem.innerHTML = `<video tabindex='2' alt='${videoAlt}' controls>
                 <source src="assets/portfolio/${authorName}/${videoName}" type="video/mp4">
                 Your browser does not support the video tag.
                 </video>

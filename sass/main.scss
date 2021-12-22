@@ -602,7 +602,7 @@ h1 {
     .modal {
         border-radius: 5px;
         background-color: $mark-color;
-        width: 40%;
+        width: 60%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -643,7 +643,7 @@ h1 {
                 flex-direction: column;
                 width: 100%;
                 align-items: self-start;
-                margin-bottom: 1rem;
+                margin-bottom: 0;
             }
             
             input {
@@ -665,7 +665,7 @@ h1 {
                 padding-left: .5rem;
             }
             .contact_button {
-              
+              margin-top: 0.5rem;
                 width: unset;
             }
         }

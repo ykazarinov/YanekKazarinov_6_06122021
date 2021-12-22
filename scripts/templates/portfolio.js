@@ -8,6 +8,7 @@ class mediaConstructor{
         this.likes = data.likes,
         this.date = data.date,
         this.price = data.price,
+        this.alt = data.alt,
 
         this.LikesSubject = LikesSubject
 
@@ -29,9 +30,6 @@ class mediaConstructor{
         const PhotographerName = this.getCharsBefore(currentPhotographer.name, ' ')
         return PhotographerName
     }
-
-
-
 
     handleLikeButton() {
         const that = this
@@ -60,7 +58,7 @@ class mediaConstructor{
     }
 }
 
-class imageConstructor extends mediaConstructor {
+class imageConstructor extends mediaConstructor { 
     constructor(id, photographerId, title, image, likes, date, price, LikesSubject, figure){
         super(id, photographerId, title, image, likes, date, price, LikesSubject, figure);
         
@@ -130,8 +128,6 @@ class imageConstructor extends mediaConstructor {
 
 
     async getMediaCardDOM(){
-
-        
         this.figure.id = this.id
         const PhotographName = await this.getCurrentPhotographName()
         let content =  `
@@ -145,21 +141,13 @@ class imageConstructor extends mediaConstructor {
             </div>
             <div class='media-likes' tabindex="9">
                 <span class='media-likes__count'> ${this.likes}</span>
-            
                 <i class="far fa-heart like-btn" aria-label='likes'></i>
-            
             </div>
         </figcaption>
-        
     `
     this.figure.innerHTML = content
-
-
-        
-
     this.handleLikeButton()
     this.openLightBox(this.id, this.photographerId, this.title, this.image)
-    
     return (this.figure);
     }
 }
@@ -167,8 +155,8 @@ class imageConstructor extends mediaConstructor {
 // ----- video -----
 
 class videoConstructor extends mediaConstructor {
-    constructor(id, photographerId, title, video, likes, date, price, LikesSubject, figure){
-        super(id, photographerId, title, video, likes, date, price, LikesSubject, figure);
+    constructor(id, photographerId, title, video, likes, date, price, alt, LikesSubject, figure){
+        super(id, photographerId, title, video, likes, date, price, alt, LikesSubject, figure);
         this.figure = document.createElement( 'figure' )
     }
 
@@ -188,9 +176,10 @@ class videoConstructor extends mediaConstructor {
         
         this.figure.id = this.id
         const PhotographName = await this.getCurrentPhotographName()
+        // alt='${this.video.split('_').join(' ').split('.')[0]}'
         let content =  `
         
-            <video alt='${this.video.split('_').join(' ').split('.')[0]}' controls  tabindex="9">
+            <video alt='${this.alt}' controls  tabindex="9">
                 <source src="assets/portfolio/${PhotographName}/${this.video}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -198,8 +187,8 @@ class videoConstructor extends mediaConstructor {
             <span class='date'>${this.date}</span>
         
         <figcaption>
-            <div class='media-name' title='${this.video.split('_').join(' ').split('.')[0]}'  tabindex="9">
-                ${this.video.split('_').join(' ').split('.')[0]}
+            <div class='media-name' title='${this.alt}'  tabindex="9">
+                ${this.alt}
             </div>
             <div class='media-likes' tabindex="9">
                 <span class='media-likes__count' > ${this.likes}</span>
