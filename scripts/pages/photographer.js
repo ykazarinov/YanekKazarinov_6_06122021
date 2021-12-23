@@ -80,8 +80,9 @@ async function makeContactModal(currentAuthotName){
             })
 
             myContactModal.checkTheForm()
+          
 
-
+            
 
            
     }

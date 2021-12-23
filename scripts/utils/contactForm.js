@@ -99,6 +99,7 @@ class contactModal{
                 let errorWindow = document.querySelector('.errorModal')
                 that.closeMessageModal(successWindow)
                 that.closeMessageModal(errorWindow)
+               
             }
             
         })
@@ -203,47 +204,40 @@ class contactModal{
 
     
 
-        // document.querySelector('form .contact_button').addEventListener('click', function(e){
-        //     e.preventDefault();
-        //     let mySubmit = new Event('submit')
-        //     document.querySelector('form').dispatchEvent(mySubmit);
-        // })
-        
-
-        //  submit form
         document.querySelector('form .contact_button').addEventListener('click', function(e){
             e.preventDefault();
-            that.deleteErrorMessages();
-            console.log('1')
-        
-        
-            let isError;
-        
-            fieldsArr.forEach(i => {
-            isValid(i);
-            if(i.error === true){
-                isError = true;
-                
-            }
-            });
-
-            if(isError){
-            that.openMessageModal(errorMsg);
-            }else{
-            
-            console.log('First Name = ', document.querySelector('#first').value)
-            console.log('Last Name = ', document.querySelector('#last').value)
-            console.log('Email = ', document.querySelector('#email').value)
-            console.log('Message = ', document.querySelector('#message').value)
-            
-
-            // that.closeMessageModal(that.modal);
-            that.closeModal()
-            that.openMessageModal(successMsg)
-            that.clearFields();
-            }
-            
+                   document.querySelector('form').dispatchEvent(new Event('submit'));
         })
+        
+
+        const buttonForm = document.querySelector('form .contact_button')
+        if (buttonForm.getAttribute('listener') != 'true') {
+            buttonForm.addEventListener('click', function(e){
+                buttonForm.setAttribute('listener', 'true');
+                e.preventDefault();
+                that.deleteErrorMessages();
+                let isError;
+                fieldsArr.forEach(i => {
+                    isValid(i);
+                    if(i.error === true){
+                        isError = true;
+                    }
+                });
+                if(isError){
+                    that.openMessageModal(errorMsg);
+                }else{
+                    console.log('First Name = ', document.querySelector('#first').value)
+                    console.log('Last Name = ', document.querySelector('#last').value)
+                    console.log('Email = ', document.querySelector('#email').value)
+                    console.log('Message = ', document.querySelector('#message').value)
+
+                that.closeModal()
+                that.openMessageModal(successMsg)
+                that.clearFields();
+                }
+                
+            })
+        }
    
     
     
